@@ -1,17 +1,24 @@
-# Ward Finder
+# election
+Ward Finder
 
-### Usage
+## Prerequisites
 
 ```
 npm install
+```
+
+## Run
+
+```
 npm start
-open http://localhost:3000
 ```
 
-### Linting
-
-This boilerplate project includes React-friendly ESLint configuration.
-
+## Test
 ```
-npm run lint
+npm test
+```
+
+## Build
+```
+npm run build
 ```

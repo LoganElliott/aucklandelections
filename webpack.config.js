@@ -1,32 +1,61 @@
-var path = require('path');
-var webpack = require('webpack');
+'use strict';
 
-module.exports = {
-  devtool: 'eval',
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './src/index'
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015'],
-        }
-      }
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
+let config = {
+    context: path.join(__dirname,'src'),
+    entry: './index.js',
+    output: {
+        path: __dirname + '/src',
+        filename: 'app-bundle.js'
+    },
+    devtool: 'eval-source-map',
+    module: {
+        loaders: [{
+            test: /\.js$/,
+            loader: 'react-hot!babel',
+            exclude: /node_modules/
+        },{
+            test: /\.css$/,
+            loader: 'style!css?sourceMap!postcss'
+        },{
+            test: /\.scss$/,
+            loader: 'style!css?sourceMap!postcss!sass?sourceMap'
+        },{
+            test: /\.json$/,
+            loader: 'json'
+        }]
+    },
+    postcss: function () {
+        return [autoprefixer];
+    },
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        port: 8080
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'election',
+            template: 'index.template.html',
+            hash: true
+        })
     ]
-  },
-  target: 'node'
 };
+
+if (process.env.NODE_ENV === 'production') {
+    config.output.path = __dirname + '/dist';
+    config.devtool = 'source-map';
+    config.devServer = null;
+    config.plugins.push(new webpack.DefinePlugin({
+        'process.env': {'NODE_ENV': JSON.stringify('production')}
+    }));
+}
+
+module.exports = config;

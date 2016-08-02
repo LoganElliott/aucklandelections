@@ -1,48 +1,57 @@
 {
   "name": "election",
+  "description": "Ward Finder",
   "version": "1.0.0",
-  "description": "Ward finder",
   "scripts": {
-    "start": "node server.js",
-    "lint": "eslint src"
+    "test": "jest --watch",
+    "test:ci": "jest --coverage",
+    "start": "webpack-dev-server --content-base=src/",
+    "prebuild": "rimraf dist",
+    "build": "cross-env NODE_ENV=production webpack -p"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LoganElliott/election.git"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
-  ],
-  "author": "Logan Elliottt",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-core": "^6.0.20",
-    "babel-eslint": "^4.1.3",
-    "babel-loader": "^6.0.1",
-    "babel-preset-es2015": "^6.0.15",
-    "babel-preset-react": "^6.0.15",
-    "babel-preset-stage-0": "^6.0.15",
-    "eslint": "^1.10.3",
-    "eslint-plugin-react": "^3.6.2",
-    "json-loader": "^0.5.4",
-    "react-hot-loader": "^1.3.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
+  "jest": {
+    "automock": false,
+    "verbose": true,
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "<rootDir>../test/style-mock.js"
+    },
+    "rootDir": "./src"
   },
   "dependencies": {
     "axios": "^0.13.1",
+    "lodash": "^4.14.1",
     "material-ui": "^0.15.2",
-    "react": "15.3.0",
-    "react-dom": "15.3.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
+    "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel": "^6.5.2",
+    "babel-core": "^6.11.4",
+    "babel-jest": "^14.1.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "cheerio": "^0.20.0",
+    "cross-env": "^2.0.0",
+    "css-loader": "^0.23.1",
+    "enzyme": "^2.4.1",
+    "html-webpack-plugin": "^2.22.0",
+    "jest-cli": "^14.1.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.8.0",
+    "postcss": "^5.1.1",
+    "postcss-loader": "^0.9.1",
+    "react-addons-test-utils": "^15.3.0",
+    "react-hot-loader": "^1.3.0",
+    "rimraf": "^2.5.4",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
