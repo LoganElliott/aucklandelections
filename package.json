@@ -1,6 +1,6 @@
 {
   "name": "election",
-  "description": "Ward Finder",
+  "description": "Local Board Finder",
   "version": "1.0.0",
   "scripts": {
     "test": "jest --watch",
