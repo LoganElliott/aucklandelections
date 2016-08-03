@@ -58,7 +58,7 @@ export default class AddressSearcher extends React.Component {
     }
 
     getLocalBoardFromLatLng(lat, lng){
-        axios.get('http://api.koordinates.com/api/vectorQuery.json/?key=' + koordinatesApiKey + '&layer=' + koordinatesLayerId + '&x=' + lng + '&y=' + lat)
+        axios.get('https://api.koordinates.com/api/vectorQuery.json/?key=' + koordinatesApiKey + '&layer=' + koordinatesLayerId + '&x=' + lng + '&y=' + lat)
             .then((koordinatesResponse) => {
                 let localBoard = koordinatesResponse.data.vectorQuery.layers[koordinatesLayerId].features[0].properties.CB_NAME;
                 if(localBoard === 'Te Irirangi Local Board Area'){
