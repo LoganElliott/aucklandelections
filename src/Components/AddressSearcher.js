@@ -1,9 +1,12 @@
 import React, {PropTypes} from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import CircularProgress from 'material-ui/CircularProgress';
 import axios from 'axios';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
+require('./AddressSearcher.scss');
 
 const koordinatesLayerId = 1513;
 const koordinatesApiKey = '979e84540aac481685f1e9ea5331cc35';
@@ -15,11 +18,13 @@ export default class AddressSearcher extends React.Component {
 
         this.state = {
             localBoard: "",
-            value: ""
+            value: "",
+            searching: false
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleEnter = this.handleEnter.bind(this);
     }
 
     handleChange(event) {
@@ -32,7 +37,14 @@ export default class AddressSearcher extends React.Component {
         this.getLatLngFromAddress(this.state.value);
     }
 
+    handleEnter(event) {
+        if(event.keyCode == 13){
+            this.getLatLngFromAddress(this.state.value);
+        }
+    }
+
     getLatLngFromAddress(address){
+        this.setState({searching: true});
         axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleApiKey)
             .then((response) => {
                 let lat = response.data.results[0].geometry.location.lat;
@@ -53,24 +65,46 @@ export default class AddressSearcher extends React.Component {
                     localBoard = 'Howick Local Board Area';
                 }
                 this.setState({localBoard: localBoard});
+                this.setState({searching: false})
+
             })
             .catch((err) => {
-                console.debug(err)
+                console.debug(err);
+                this.setState({searching: false});
+
             });
     }
 
     render() {
 
+        const textFieldStyle = {
+            margin: 12
+        };
+
+        const buttonStyle = {
+            margin: 12
+        };
+
+
+
         return(
             <div>
-                <TextField hintText="Enter Address"
-                           value={this.state.value}
-                           onChange={this.handleChange}
-                />
-                <RaisedButton label="Find Local Board"
-                              onClick={this.handleClick}
-                />
-                <div>Your Local Board is: {this.state.localBoard}</div>
+                <div id="local-board-input-and-button">
+                    <TextField hintText="Enter Address"
+                               value={this.state.value}
+                               onChange={this.handleChange}
+                               style={textFieldStyle}
+                               onKeyDown={this.handleEnter}
+                    />
+                    <RaisedButton label="Find Local Board"
+                                  onClick={this.handleClick}
+                                  style={buttonStyle}
+                    />
+                    <div id="loading-bar">
+                        { this.state.searching ? <CircularProgress mode="indeterminate" /> : null }
+                    </div>
+                    { !this.state.searching && this.state.localBoard?  <div>Your Local Board is: {this.state.localBoard}</div> : null }
+                </div>
             </div>
         );
     }
