@@ -23,11 +23,14 @@ export default class councillorCard extends React.Component {
             scores: {
                 density: {
                     name: 'Density Done Well',
-                    score: 'A+'
+                    score: 'A+',
+                    statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access'
                 },
                 climateChange : {
                     name: 'Climate Change Ideas',
-                    score: 'A+'
+                    score: 'A+',
+                    statement: 'Save the planet!'
+
                 },
             }
         };
@@ -90,14 +93,15 @@ export default class councillorCard extends React.Component {
                         <List>
                             <ListItem
                                 primaryText={this.state.scores.density.name}
-                                disabled
                                 leftAvatar={<Avatar size={40} src={'DensityDoneWell.png'}/>}
                                 rightAvatar={<Avatar>{this.state.scores.density.score}</Avatar>}
+                                secondaryText={this.state.scores.density.statement}
                             />
                             <ListItem
                                 primaryText={this.state.scores.climateChange.name}
                                 leftAvatar={<Avatar size={40} src={'climatechange.png'}/>}
                                 rightAvatar={<Avatar>{this.state.scores.climateChange.score}</Avatar>}
+                                secondaryText={this.state.scores.climateChange.statement}
                             />
                         </List>
                     </CardText>
