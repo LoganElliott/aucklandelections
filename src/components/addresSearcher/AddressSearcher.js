@@ -64,6 +64,7 @@ export default class AddressSearcher extends React.Component {
                 if(localBoard === 'Te Irirangi Local Board Area'){
                     localBoard = 'Howick Local Board Area';
                 }
+                localBoard.replace('Local Board Area', '');
                 this.setState({localBoard: localBoard});
                 this.setState({searching: false})
 
@@ -85,8 +86,6 @@ export default class AddressSearcher extends React.Component {
             margin: 12
         };
 
-
-
         return(
             <div>
                 <div id="local-board-input-and-button">
@@ -101,7 +100,7 @@ export default class AddressSearcher extends React.Component {
                                   style={buttonStyle}
                     />
                     <div id="loading-bar">
-                        { this.state.searching ? <CircularProgress mode="indeterminate" /> : null }
+                        { this.state.searching ? <CircularProgress mode="indeterminate"/> : null }
                     </div>
                     { !this.state.searching && this.state.localBoard?  <div>Your Local Board is: {this.state.localBoard}</div> : null }
                 </div>
@@ -110,7 +109,3 @@ export default class AddressSearcher extends React.Component {
     }
 
 }
-
-
-
-export default AddressSearcher;
