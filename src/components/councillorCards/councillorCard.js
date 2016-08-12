@@ -13,9 +13,140 @@ export default class councillorCard extends React.Component {
         super(props, context);
 
         this.state = {
-
+            expandedIds: [],
             councilors : [
                 {
+                    key: 1,
+                    email: 'info@generationzero.org.nz',
+                    website: 'http://www.generationzero.org/',
+                    name: 'Generation Zero',
+                    board: 'Waitamata',
+                    avatar: 'gzLogo.jpg',
+                    grade: 'A+',
+                    expanded: false,
+                    scores: [
+                        {
+                            key: 'density',
+                            name: 'Density Done Well',
+                            score: 'A+',
+                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
+                            avatar: 'DensityDoneWell.png'
+                        },
+                        {
+                            key: 'climate',
+                            name: 'Climate Change Ideas',
+                            score: 'A+',
+                            statement: 'Save the planet!',
+                            avatar: 'climatechange.png'
+
+                        },
+                    ]
+                },{
+                    key: 2,
+                    email: 'info@generationzero.org.nz',
+                    website: 'http://www.generationzero.org/',
+                    name: 'Generation Zero',
+                    board: 'Waitamata',
+                    avatar: 'gzLogo.jpg',
+                    grade: 'A+',
+                    expanded: false,
+                    scores: [
+                        {
+                            key: 'density',
+                            name: 'Density Done Well',
+                            score: 'A+',
+                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
+                            avatar: 'DensityDoneWell.png'
+                        },
+                        {
+                            key: 'climate',
+                            name: 'Climate Change Ideas',
+                            score: 'A+',
+                            statement: 'Save the planet!',
+                            avatar: 'climatechange.png'
+
+                        },
+                    ]
+                },{
+                    key: 3,
+                    email: 'info@generationzero.org.nz',
+                    website: 'http://www.generationzero.org/',
+                    name: 'Generation Zero',
+                    board: 'Waitamata',
+                    avatar: 'gzLogo.jpg',
+                    grade: 'A+',
+                    expanded: false,
+                    scores: [
+                        {
+                            key: 'density',
+                            name: 'Density Done Well',
+                            score: 'A+',
+                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
+                            avatar: 'DensityDoneWell.png'
+                        },
+                        {
+                            key: 'climate',
+                            name: 'Climate Change Ideas',
+                            score: 'A+',
+                            statement: 'Save the planet!',
+                            avatar: 'climatechange.png'
+
+                        },
+                    ]
+                },{
+                    key: 4,
+                    email: 'info@generationzero.org.nz',
+                    website: 'http://www.generationzero.org/',
+                    name: 'Generation Zero',
+                    board: 'Waitamata',
+                    avatar: 'gzLogo.jpg',
+                    grade: 'A+',
+                    expanded: false,
+                    scores: [
+                        {
+                            key: 'density',
+                            name: 'Density Done Well',
+                            score: 'A+',
+                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
+                            avatar: 'DensityDoneWell.png'
+                        },
+                        {
+                            key: 'climate',
+                            name: 'Climate Change Ideas',
+                            score: 'A+',
+                            statement: 'Save the planet!',
+                            avatar: 'climatechange.png'
+
+                        },
+                    ]
+                },{
+                    key: 5,
+                    email: 'info@generationzero.org.nz',
+                    website: 'http://www.generationzero.org/',
+                    name: 'Generation Zero',
+                    board: 'Waitamata',
+                    avatar: 'gzLogo.jpg',
+                    grade: 'A+',
+                    expanded: false,
+                    scores: [
+                        {
+                            key: 'density',
+                            name: 'Density Done Well',
+                            score: 'A+',
+                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
+                            avatar: 'DensityDoneWell.png'
+                        },
+                        {
+                            key: 'climate',
+                            name: 'Climate Change Ideas',
+                            score: 'A+',
+                            statement: 'Save the planet!',
+                            avatar: 'climatechange.png'
+
+                        },
+                    ]
+                },{
+                    key: 6,
                     email: 'info@generationzero.org.nz',
                     website: 'http://www.generationzero.org/',
                     name: 'Generation Zero',
@@ -42,6 +173,7 @@ export default class councillorCard extends React.Component {
                     ]
                 },
                 {
+                    key: 7,
                     email: 'admin@greaterauckland.org.nz',
                     website: 'http://www.greaterauckland.org.nz/',
                     name: 'Greater Auckland',
@@ -72,7 +204,6 @@ export default class councillorCard extends React.Component {
         };
 
         this.handleWebsiteClick = this.handleWebsiteClick.bind(this);
-        this.handleExpandChange = this.handleExpandChange.bind(this);
         this.handleExpand = this.handleExpand.bind(this);
         this.handleReduce = this.handleReduce.bind(this);
     }
@@ -81,38 +212,39 @@ export default class councillorCard extends React.Component {
         window.open(website, '_blank');
     }
 
-    handleExpandChange (expanded) {
-        this.setState({expanded: expanded});
+    handleExpand(councilorId){
+        this.setState({expandedIds:this.state.expandedIds.concat(councilorId)});
     };
 
-    handleExpand(expanded){
-        expanded = true;
+    handleReduce (councilorId) {
+
+        this.setState({expandedIds:this.state.expandedIds.filter((val) => {return val !== councilorId})});
+
     };
-
-    handleReduce (expanded) {
-        expanded = false;
-    };
-
-
 
      render() {
+
          const grade = {
-           color: 'green',
+             color: 'green',
              fontSize: '300%'
          };
 
+         const width = {
+           width: "400px"
+         };
+
          const councillors = this.state.councilors.map(councillor =>
-         <span id="councillorCard">
+         <span>
              <Card
-                 key={councillor.name}
-                 expanded={councillor.expanded}>
-                 {console.debug(councillor.expanded)}
+                 key={councillor.key}
+                 expanded={this.state.expandedIds.some((val) => {return val === councillor.key})}>
                  <CardHeader
                      title={councillor.name}
                      subtitle={councillor.board + ' local board'}
                      avatar={councillor.avatar}
                      actAsExpander={true}
                      showExpandableButton={true}
+                     style={width}
                  >
                      <span style={grade}>{councillor.grade}</span>
                  </CardHeader>
@@ -134,16 +266,20 @@ export default class councillorCard extends React.Component {
                      <list>
                          {councillor.scores.map(
                              score => <ListItem
-                                                key={score.key}
-                                                primaryText={score.name}
-                                                leftAvatar={<Avatar size={40} src={score.avatar}/>}
-                                                rightAvatar={<Avatar>{score.score}</Avatar>}/>
-                            )
+                                 key={score.key}
+                                 primaryText={score.name}
+                                 leftAvatar={<Avatar size={40} src={score.avatar}/>}
+                                 rightAvatar={<Avatar>{score.score}</Avatar>}/>
+                         )
                          }
                      </list>
                  </CardText>
                  <CardActions>
-                     { !councillor.expanded ? <FlatButton label="Show scores" onTouchTap={() => this.handleExpand(councillor.expanded)} /> : <FlatButton label="Hide scores" onTouchTap={() => this.handleReduce(councillor.expanded)} /> }
+                     {
+                         !this.state.expandedIds.some((val) => {return val === councillor.key})
+                             ? <FlatButton label="Show scores" onTouchTap={() => this.handleExpand(councillor.key)} />
+                             : <FlatButton label="Hide scores" onTouchTap={() => this.handleReduce(councillor.key)} />
+                     }
                  </CardActions>
              </Card>
          </span>

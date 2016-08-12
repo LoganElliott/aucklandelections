@@ -53,6 +53,7 @@ export default class AddressSearcher extends React.Component {
                 this.getLocalBoardFromLatLng(lat,lng);
             })
             .catch((err) => {
+                this.setState({searching: false});
                 console.debug(err)
             });
     }
