@@ -8,3 +8,10 @@
   flex-wrap: wrap;
   width: 100%;
 }
+
+@media screen and (min-width: 430px) {
+  #councilorCardContainer{
+    height: 430px
+  }
+
+}

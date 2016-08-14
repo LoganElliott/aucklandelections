@@ -13,195 +13,9 @@ export default class councillorCard extends React.Component {
         super(props, context);
 
         this.state = {
-            expandedIds: [],
-            councilors : [
-                {
-                    key: 1,
-                    email: 'info@generationzero.org.nz',
-                    website: 'http://www.generationzero.org/',
-                    name: 'Generation Zero',
-                    board: 'Waitamata',
-                    avatar: 'gzLogo.jpg',
-                    grade: 'A+',
-                    expanded: false,
-                    scores: [
-                        {
-                            key: 'density',
-                            name: 'Density Done Well',
-                            score: 'A+',
-                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
-                        },
-                        {
-                            key: 'climate',
-                            name: 'Climate Change Ideas',
-                            score: 'A+',
-                            statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
-
-                        },
-                    ]
-                },{
-                    key: 2,
-                    email: 'info@generationzero.org.nz',
-                    website: 'http://www.generationzero.org/',
-                    name: 'Generation Zero',
-                    board: 'Waitamata',
-                    avatar: 'gzLogo.jpg',
-                    grade: 'A+',
-                    expanded: false,
-                    scores: [
-                        {
-                            key: 'density',
-                            name: 'Density Done Well',
-                            score: 'A+',
-                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
-                        },
-                        {
-                            key: 'climate',
-                            name: 'Climate Change Ideas',
-                            score: 'A+',
-                            statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
-
-                        },
-                    ]
-                },{
-                    key: 3,
-                    email: 'info@generationzero.org.nz',
-                    website: 'http://www.generationzero.org/',
-                    name: 'Generation Zero',
-                    board: 'Waitamata',
-                    avatar: 'gzLogo.jpg',
-                    grade: 'A+',
-                    expanded: false,
-                    scores: [
-                        {
-                            key: 'density',
-                            name: 'Density Done Well',
-                            score: 'A+',
-                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
-                        },
-                        {
-                            key: 'climate',
-                            name: 'Climate Change Ideas',
-                            score: 'A+',
-                            statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
-
-                        },
-                    ]
-                },{
-                    key: 4,
-                    email: 'info@generationzero.org.nz',
-                    website: 'http://www.generationzero.org/',
-                    name: 'Generation Zero',
-                    board: 'Waitamata',
-                    avatar: 'gzLogo.jpg',
-                    grade: 'A+',
-                    expanded: false,
-                    scores: [
-                        {
-                            key: 'density',
-                            name: 'Density Done Well',
-                            score: 'A+',
-                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
-                        },
-                        {
-                            key: 'climate',
-                            name: 'Climate Change Ideas',
-                            score: 'A+',
-                            statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
-
-                        },
-                    ]
-                },{
-                    key: 5,
-                    email: 'info@generationzero.org.nz',
-                    website: 'http://www.generationzero.org/',
-                    name: 'Generation Zero',
-                    board: 'Waitamata',
-                    avatar: 'gzLogo.jpg',
-                    grade: 'A+',
-                    expanded: false,
-                    scores: [
-                        {
-                            key: 'density',
-                            name: 'Density Done Well',
-                            score: 'A+',
-                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
-                        },
-                        {
-                            key: 'climate',
-                            name: 'Climate Change Ideas',
-                            score: 'A+',
-                            statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
-
-                        },
-                    ]
-                },{
-                    key: 6,
-                    email: 'info@generationzero.org.nz',
-                    website: 'http://www.generationzero.org/',
-                    name: 'Generation Zero',
-                    board: 'Waitamata',
-                    avatar: 'gzLogo.jpg',
-                    grade: 'A+',
-                    expanded: false,
-                    scores: [
-                        {
-                            key: 'density',
-                            name: 'Density Done Well',
-                            score: 'A+',
-                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
-                        },
-                        {
-                            key: 'climate',
-                            name: 'Climate Change Ideas',
-                            score: 'A+',
-                            statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
-
-                        },
-                    ]
-                },
-                {
-                    key: 7,
-                    email: 'admin@greaterauckland.org.nz',
-                    website: 'http://www.greaterauckland.org.nz/',
-                    name: 'Greater Auckland',
-                    board: 'Albert-Eden',
-                    avatar: 'greaterAucklandLogo.jpg',
-                    grade: 'A+',
-                    expanded: false,
-                    scores: [
-                        {
-                            key: 'density',
-                            name: 'Density Done Well',
-                            score: 'A+',
-                            statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
-                        },
-                        {
-                            key: 'climate',
-                            name: 'Climate Change Ideas',
-                            score: 'A+',
-                            statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
-
-                        },
-                    ]
-                }
-            ]
-
+            expandedIds: []
         };
+
 
         this.handleWebsiteClick = this.handleWebsiteClick.bind(this);
         this.handleExpand = this.handleExpand.bind(this);
@@ -233,11 +47,14 @@ export default class councillorCard extends React.Component {
            width: "400px"
          };
 
-         const councillors = this.state.councilors.map(councillor =>
-         <span>
+         const councillors = this.props.councilors.map(councillor => {
+             if(this.props.localBoard === councillor.board){
+               return <span id="councilorCardContainer">
              <Card
                  key={councillor.key}
-                 expanded={this.state.expandedIds.some((val) => {return val === councillor.key})}>
+                 expanded={this.state.expandedIds.some((val) => {
+                     return val === councillor.key
+                 })}>
                  <CardHeader
                      title={councillor.name}
                      subtitle={councillor.board + ' local board'}
@@ -276,14 +93,17 @@ export default class councillorCard extends React.Component {
                  </CardText>
                  <CardActions>
                      {
-                         !this.state.expandedIds.some((val) => {return val === councillor.key})
-                             ? <FlatButton label="Show scores" onTouchTap={() => this.handleExpand(councillor.key)} />
-                             : <FlatButton label="Hide scores" onTouchTap={() => this.handleReduce(councillor.key)} />
+                         !this.state.expandedIds.some((val) => {
+                             return val === councillor.key
+                         })
+                             ? <FlatButton label="Show scores" onTouchTap={() => this.handleExpand(councillor.key)}/>
+                             : <FlatButton label="Hide scores" onTouchTap={() => this.handleReduce(councillor.key)}/>
                      }
                  </CardActions>
              </Card>
          </span>
-         );
+             }
+         });
 
         return(
             <div id="container">

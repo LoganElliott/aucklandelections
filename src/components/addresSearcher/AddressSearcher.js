@@ -45,7 +45,7 @@ export default class AddressSearcher extends React.Component {
 
     getLatLngFromAddress(address){
         this.setState({searching: true});
-        axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleApiKey)
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json?region=NZ&address=' + address + '&key=' + googleApiKey)
             .then((response) => {
                 let lat = response.data.results[0].geometry.location.lat;
                 let lng = response.data.results[0].geometry.location.lng;
@@ -54,6 +54,8 @@ export default class AddressSearcher extends React.Component {
             })
             .catch((err) => {
                 this.setState({searching: false});
+                this.props.setLocalBoard('');
+                this.setState({localBoard: ''});
                 console.debug(err)
             });
     }
@@ -65,15 +67,16 @@ export default class AddressSearcher extends React.Component {
                 if(localBoard === 'Te Irirangi Local Board Area'){
                     localBoard = 'Howick Local Board Area';
                 }
-                localBoard.replace('Local Board Area', '');
+                localBoard = localBoard.replace(' Local Board Area', '');
                 this.setState({localBoard: localBoard});
-                this.setState({searching: false})
+                this.setState({searching: false});
+                this.props.setLocalBoard(localBoard);
 
             })
             .catch((err) => {
                 console.debug(err);
                 this.setState({searching: false});
-
+                this.props.setLocalBoard('');
             });
     }
 
