@@ -3,6 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AddressSearcher from '../components/addresSearcher/AddressSearcher';
 import CouncillorCard from '../components/councillorCards/councillorCard';
+import Header from '../components/header/header';
+import Footer from '../components/footer/footer';
 
 export default class App extends Component {
     constructor(props, context){
@@ -20,18 +22,25 @@ export default class App extends Component {
                     expanded: false,
                     scores: [
                         {
+                            key: 'transport',
+                            name: 'Transport',
+                            score: 'A+',
+                            statement: 'I love to ride my bike or catch the train if it rains',
+                            avatar: 'Transport-Icon.png'
+                        },
+                        {
                             key: 'density',
-                            name: 'Density Done Well',
+                            name: 'Housing',
                             score: 'A+',
                             statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
+                            avatar: 'Housing-Icon.png'
                         },
                         {
                             key: 'climate',
-                            name: 'Climate Change Ideas',
+                            name: 'Climate Change',
                             score: 'A+',
                             statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
+                            avatar: 'Environment-Icon.png'
 
                         },
                     ]
@@ -46,18 +55,25 @@ export default class App extends Component {
                     expanded: false,
                     scores: [
                         {
+                            key: 'transport',
+                            name: 'Transport',
+                            score: 'A+',
+                            statement: 'I love to ride my bike or catch the train if it rains',
+                            avatar: 'Transport-Icon.png'
+                        },
+                        {
                             key: 'density',
                             name: 'Density Done Well',
                             score: 'A+',
                             statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
+                            avatar: 'Housing-Icon.png'
                         },
                         {
                             key: 'climate',
                             name: 'Climate Change Ideas',
                             score: 'A+',
                             statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
+                            avatar: 'Environment-Icon.png'
 
                         },
                     ]
@@ -72,18 +88,25 @@ export default class App extends Component {
                     expanded: false,
                     scores: [
                         {
+                            key: 'transport',
+                            name: 'Transport',
+                            score: 'A+',
+                            statement: 'I love to ride my bike or catch the train if it rains',
+                            avatar: 'Transport-Icon.png'
+                        },
+                        {
                             key: 'density',
                             name: 'Density Done Well',
                             score: 'A+',
                             statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
+                            avatar: 'Housing-Icon.png'
                         },
                         {
                             key: 'climate',
                             name: 'Climate Change Ideas',
                             score: 'A+',
                             statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
+                            avatar: 'Environment-Icon.png'
 
                         },
                     ]
@@ -98,18 +121,25 @@ export default class App extends Component {
                     expanded: false,
                     scores: [
                         {
+                            key: 'transport',
+                            name: 'Transport',
+                            score: 'A+',
+                            statement: 'I love to ride my bike or catch the train if it rains',
+                            avatar: 'Transport-Icon.png'
+                        },
+                        {
                             key: 'density',
                             name: 'Density Done Well',
                             score: 'A+',
                             statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
+                            avatar: 'Housing-Icon.png'
                         },
                         {
                             key: 'climate',
                             name: 'Climate Change Ideas',
                             score: 'A+',
                             statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
+                            avatar: 'Environment-Icon.png'
 
                         },
                     ]
@@ -124,18 +154,25 @@ export default class App extends Component {
                     expanded: false,
                     scores: [
                         {
+                            key: 'transport',
+                            name: 'Transport',
+                            score: 'A+',
+                            statement: 'I love to ride my bike or catch the train if it rains',
+                            avatar: 'Transport-Icon.png'
+                        },
+                        {
                             key: 'density',
                             name: 'Density Done Well',
                             score: 'A+',
                             statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
+                            avatar: 'Housing-Icon.png'
                         },
                         {
                             key: 'climate',
                             name: 'Climate Change Ideas',
                             score: 'A+',
                             statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
+                            avatar: 'Environment-Icon.png'
 
                         },
                     ]
@@ -150,18 +187,25 @@ export default class App extends Component {
                     expanded: false,
                     scores: [
                         {
+                            key: 'transport',
+                            name: 'Transport',
+                            score: 'A+',
+                            statement: 'I love to ride my bike or catch the train if it rains',
+                            avatar: 'Transport-Icon.png'
+                        },
+                        {
                             key: 'density',
                             name: 'Density Done Well',
                             score: 'A+',
                             statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
+                            avatar: 'Housing-Icon.png'
                         },
                         {
                             key: 'climate',
                             name: 'Climate Change Ideas',
                             score: 'A+',
                             statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
+                            avatar: 'Environment-Icon.png'
 
                         },
                     ]
@@ -177,18 +221,25 @@ export default class App extends Component {
                     expanded: false,
                     scores: [
                         {
+                            key: 'transport',
+                            name: 'Transport',
+                            score: 'A+',
+                            statement: 'I love to ride my bike or catch the train if it rains',
+                            avatar: 'Transport-Icon.png'
+                        },
+                        {
                             key: 'density',
                             name: 'Density Done Well',
                             score: 'A+',
                             statement: 'Wooo housing choices for everyone, I really want people to have houses close to where they live and play. With good public transport access',
-                            avatar: 'DensityDoneWell.png'
+                            avatar: 'Housing-Icon.png'
                         },
                         {
                             key: 'climate',
                             name: 'Climate Change Ideas',
                             score: 'A+',
                             statement: 'Save the planet!',
-                            avatar: 'climatechange.png'
+                            avatar: 'Environment-Icon.png'
 
                         },
                     ]
@@ -208,8 +259,10 @@ export default class App extends Component {
     return (
         <MuiThemeProvider>
             <div>
+                <Header/>
                 <AddressSearcher setLocalBoard={this.setLocalBoard}/>
                 <CouncillorCard councilors={this.state.councilors} localBoard={this.state.localBoard}/>
+                <Footer/>
             </div>
         </MuiThemeProvider>
     );

@@ -49,7 +49,7 @@ export default class councillorCard extends React.Component {
 
          const councillors = this.props.councilors.map(councillor => {
              if(this.props.localBoard === councillor.board){
-               return <span id="councilorCardContainer">
+               return <span className="councilor-card-container">
              <Card
                  key={councillor.key}
                  expanded={this.state.expandedIds.some((val) => {
@@ -106,7 +106,7 @@ export default class councillorCard extends React.Component {
          });
 
         return(
-            <div id="container">
+            <div className="councilor-cards">
                 {councillors}
             </div>
         );

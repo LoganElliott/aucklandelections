@@ -90,19 +90,60 @@ export default class AddressSearcher extends React.Component {
             margin: 12
         };
 
+        const genZeroStyle = {
+            fontWeight: 900
+        };
+
+        const localElectionScoreCards = {
+            fontSize: '50px'
+        };
+
+        const aboutText = {
+            fontSize: '18px',
+            fontWeight: 300,
+        };
+
+        let infoText;
+        if(!this.state.localBoard){
+            infoText = <div>
+                <div style={genZeroStyle}>
+                    GENERATION ZERO'S
+                </div>
+                <div style={localElectionScoreCards}>
+                    Local Election Scorecards
+                </div>
+                <div style={aboutText}>
+                    We sat down and grilled each Auckland Council candidate one by one.
+                    <br/>
+                    Here are their results.
+                </div>
+            </div>
+        } else {
+            infoText = '';
+        }
+
         return(
             <div>
-                <div id="local-board-input-and-button">
-                    <TextField hintText="Enter Address"
-                               value={this.state.value}
-                               onChange={this.handleChange}
-                               style={textFieldStyle}
-                               onKeyDown={this.handleEnter}
-                    />
-                    <RaisedButton label="Find Local Board"
-                                  onClick={this.handleClick}
-                                  style={buttonStyle}
-                    />
+                <div id="local-board-input-and-button" className={!this.state.localBoard ? 'centre-textField' : ''}>
+
+                    {infoText}
+                    <div className={this.state.localBoard ? 'field-button-container' : ''}>
+                        <div>
+                            <TextField hintText="Enter Address"
+                                       value={this.state.value}
+                                       onChange={this.handleChange}
+                                       style={textFieldStyle}
+                                       onKeyDown={this.handleEnter}
+                            />
+                        </div>
+                        <div>
+                            <RaisedButton label="FIND MY VOTING AREA"
+                                          onClick={this.handleClick}
+                                          style={buttonStyle}
+                                          className='find-my-voting-area-button'
+                            />
+                        </div>
+                    </div>
                     <div id="loading-bar">
                         { this.state.searching ? <CircularProgress mode="indeterminate"/> : null }
                     </div>

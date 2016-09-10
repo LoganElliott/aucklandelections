@@ -1,7 +1,26 @@
 #local-board-input-and-button {
   text-align: center;
+  color: snow;
+  padding: 40px;
+}
+
+.find-my-voting-area-button :first-child {
+    background-color: #67bdb0;
+}
+
+.centre-textField {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 
 #loading-bar {
   text-align: center;
+}
+
+.field-button-container {
+  display: inline-flex;
 }

@@ -1,0 +1,18 @@
+.footer-container {
+  color: snow;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 17px;
+  display: inline-block;
+  align-items: center;
+  background-color: #747473;
+}
+
+@media screen and (max-width: 465px) {
+  .footer-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+}
