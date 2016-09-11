@@ -1,0 +1,69 @@
+.cards-container {
+  height: 550px;
+  width: 250px;
+  background-color: blue;
+  border-radius: 12px;
+}
+
+.councillor-image {
+  &__container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  &__value {
+    border-radius: 50%;
+  }
+}
+
+.councillor-info {
+  text-align: center;
+}
+
+.councillor-ticket {
+  margin: 5px;
+}
+
+.councillor-scores {
+  display: flex;
+  justify-content: center;
+}
+
+.councillor-score {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 5px;
+
+  &__category {
+    margin: 5px;
+    width: 60px;
+    height: 60px;
+  }
+
+  &__value {
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(77, 86, 93, .77);
+  }
+
+  &__transport {
+    background-color: #fee5c1;
+  }
+
+  &__housing {
+    background-color: #fadae2;
+  }
+
+  &__environment {
+    background-color: #bedfd9;
+  }
+}
+
+.councillor-score-breakdown-button {
+  padding: 20px;
+}

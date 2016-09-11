@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AddressSearcher from '../components/addresSearcher/AddressSearcher';
-import CouncillorCard from '../components/councillorCards/councillorCard';
+import Cards from '../components/cards/cards';
 import Header from '../components/header/header';
 import Footer from '../components/footer/footer';
 
@@ -261,7 +261,8 @@ export default class App extends Component {
             <div>
                 <Header/>
                 <AddressSearcher setLocalBoard={this.setLocalBoard}/>
-                <CouncillorCard councilors={this.state.councilors} localBoard={this.state.localBoard}/>
+                {/*<CouncillorCard councilors={this.state.councilors} localBoard={this.state.localBoard}/>*/}
+                <Cards/>
                 <Footer/>
             </div>
         </MuiThemeProvider>

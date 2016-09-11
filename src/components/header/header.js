@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 
 require('./header.scss');
 
-export default class councillorCard extends React.Component {
+export default class header extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -12,8 +12,7 @@ export default class councillorCard extends React.Component {
     render() {
 
         return(
-            <div>
-                <div className="header-container">
+            <div className="header-container">
                     <a>
                         <img className="gz-logo" src="GZ-logo.png"/>
                     </a>
@@ -22,7 +21,6 @@ export default class councillorCard extends React.Component {
                         <span className="nav-item">Our Criterea</span>
                         <span className="nav-item">About Us</span>
                     </span>
-                </div>
             </div>
         );
     }

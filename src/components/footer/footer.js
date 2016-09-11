@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 
 require('./footer.scss');
 
-export default class councillorCard extends React.Component {
+export default class footer extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -12,8 +12,7 @@ export default class councillorCard extends React.Component {
     render() {
 
         return(
-            <div>
-                <div className="footer-container">
+            <div className="footer-container">
                     <a>
                         <img className="gz-logo" src="GZ-logo.png"/>
                     </a>
@@ -23,7 +22,6 @@ export default class councillorCard extends React.Component {
                         <span className="nav-item">About</span>
                         <span className="nav-item">Contact</span>
                     </span>
-                </div>
             </div>
         );
     }
