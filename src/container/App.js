@@ -262,7 +262,7 @@ export default class App extends Component {
                 <Header/>
                 <AddressSearcher setLocalBoard={this.setLocalBoard}/>
                 {/*<CouncillorCard councilors={this.state.councilors} localBoard={this.state.localBoard}/>*/}
-                <Cards/>
+                <Cards localBoard={this.state.localBoard}/>
                 <Footer/>
             </div>
         </MuiThemeProvider>

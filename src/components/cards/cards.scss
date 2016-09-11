@@ -1,12 +1,18 @@
+.candidate-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .councillor {
   &-card {
     display: flex;
+    margin: 10px;
   }
 
   &-details {
     height: 550px;
     width: 250px;
-    background-color: blue;
+    background-color: dodgerblue;
     border-radius: 12px;
   }
 

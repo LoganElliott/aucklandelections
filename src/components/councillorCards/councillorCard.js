@@ -31,9 +31,7 @@ export default class councillorCard extends React.Component {
     };
 
     handleReduce (councilorId) {
-
         this.setState({expandedIds:this.state.expandedIds.filter((val) => {return val !== councilorId})});
-
     };
 
      render() {
