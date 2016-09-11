@@ -1,69 +1,100 @@
-.cards-container {
-  height: 550px;
-  width: 250px;
-  background-color: blue;
-  border-radius: 12px;
-}
-
-.councillor-image {
-  &__container {
+.councillor {
+  &-card {
     display: flex;
-    justify-content: center;
+  }
+
+  &-details {
+    height: 550px;
+    width: 250px;
+    background-color: blue;
+    border-radius: 12px;
+  }
+
+  &-image {
+    &__container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    &__value {
+      border-radius: 50%;
+    }
+  }
+
+  &-info {
+    text-align: center;
+
+    &__name {
+      color: snow;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    &__ticket {
+      margin: 5px;
+    }
+
+    &__category {
+      margin: 5px;
+      width: 60px;
+      height: 60px;
+    }
+
+    &__transport {
+      background-color: #fee5c1;
+    }
+
+    &__housing {
+      background-color: #fadae2;
+    }
+
+    &__environment {
+      background-color: #bedfd9;
+    }
+
+    &__scores {
+      display: flex;
+      justify-content: center;
+    }
+
+    &__score {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+
+      &-value {
+        font-size: 28px;
+        font-weight: 400;
+        color: rgba(77, 86, 93, .77);
+      }
+    }
+  }
+
+  &-score-breakdown-button {
     padding: 20px;
   }
-
-  &__value {
-    border-radius: 50%;
-  }
 }
 
-.councillor-info {
-  text-align: center;
+.councillor-questions {
+  color: snow;
 }
 
-.councillor-ticket {
-  margin: 5px;
-}
-
-.councillor-scores {
+.councillor-questions__question {
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
-.councillor-score {
-  width: 60px;
-  height: 60px;
+.councillor-questions__breakdown-value {
   display: flex;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  margin: 5px;
-
-  &__category {
-    margin: 5px;
-    width: 60px;
-    height: 60px;
-  }
-
-  &__value {
-    font-size: 28px;
-    font-weight: 400;
-    color: rgba(77, 86, 93, .77);
-  }
-
-  &__transport {
-    background-color: #fee5c1;
-  }
-
-  &__housing {
-    background-color: #fadae2;
-  }
-
-  &__environment {
-    background-color: #bedfd9;
-  }
-}
-
-.councillor-score-breakdown-button {
-  padding: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(77, 86, 93, .77);
+  margin-left: 5px;
 }
