@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react'
 import FlatButton from 'material-ui/FlatButton';
-
 require('./cards.scss');
 
 export default class card extends React.Component {
@@ -16,7 +15,7 @@ export default class card extends React.Component {
                     firstName: "Chloe",
                     lastName: "SwarBrick",
                     ticket: "Independent",
-                    markersConsensus: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    markersConsensus: "Her only downside of is that she lacks experience. Aside from that she is well researched and genuine in her beliefs. She has the energy and a new point of view that the city needs.",
                     image: "https://daks2k3a4ib2z.cloudfront.net/57ba84ee186c098b38c4abff/57c90cb5120db7d91b47e026_chloe.png",
                     scores: {
                         transport: {
@@ -250,26 +249,16 @@ export default class card extends React.Component {
 
         let candidateBreakdown = candidate => {
             if (this.candidateBreakdownOpen(candidate))
-                return <div className="councillor-details">
-                    <h4 className="councillor-questions councillor-questions__question">
-                        Capital Transport Expenditure
-                        <span className="councillor-info__transport councillor-questions__breakdown-value">
-                                A+
-                            </span>
-                    </h4>
-                    <h4 className="councillor-questions councillor-questions__question">
-                        Top Transport Priorities
-                        <span className="councillor-info__transport councillor-questions__breakdown-value">
-                                B+
-                            </span>
-                    </h4>
+                return <div className="councillor-breakdown">
+                    <div>
+                        <img className="councillor-breakdown-big-category" src="Transport-Icon.png" />
+                        <img className="councillor-breakdown-big-category" src="Housing-Icon.png"/>
+                        <img className="councillor-breakdown-big-category" src="Environment-Icon.png"/>
+                        <img className="councillor-breakdown-big-category" src="Competence-Icon.png"/>
+                    </div>
+                    <div>
 
-                    <h4 className="councillor-questions councillor-questions__question">
-                        Compact City Model
-                        <span className="councillor-info__housing councillor-questions__breakdown-value">
-                                B+
-                            </span>
-                    </h4>
+                    </div>
                 </div>
         };
 

@@ -1,6 +1,7 @@
 .candidate-main {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .councillor {
@@ -12,7 +13,7 @@
   &-details {
     height: 550px;
     width: 300px;
-    background-color: dodgerblue;
+    background-color: #A1DCFF;
     border-radius: 12px;
     justify-content: center;
     display: flex;
@@ -139,5 +140,19 @@
 
   &-markers-consensus-title {
     color: snow;
+  }
+}
+
+.councillor-breakdown {
+  height: 550px;
+  width: 600px;
+  background-color: #A1DCFF;
+  border-radius: 12px;
+  color: #A1DCFF;
+
+  &-big-category {
+    margin: 15px;
+    width: 100px;
+    height: 100px;
   }
 }
