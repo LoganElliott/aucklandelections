@@ -103,9 +103,7 @@ export default class AddressSearcher extends React.Component {
             fontWeight: 300,
         };
 
-        let infoText;
-        if(!this.state.localBoard){
-            infoText = <div>
+        let infoText = <div>
                 <div style={genZeroStyle}>
                     GENERATION ZERO'S
                 </div>
@@ -118,16 +116,13 @@ export default class AddressSearcher extends React.Component {
                     Here are their results.
                 </div>
             </div>
-        } else {
-            infoText = '';
-        }
 
         return(
             <div>
-                <div id="local-board-input-and-button" className={!this.state.localBoard ? 'centre-textField' : ''}>
+                <div id="local-board-input-and-button" className='centre-textField'>
 
                     {infoText}
-                    <div className={this.state.localBoard ? 'field-button-container' : ''}>
+                    <div className='field-button-container'>
                         <div>
                             <TextField hintText="Enter Address"
                                        value={this.state.value}

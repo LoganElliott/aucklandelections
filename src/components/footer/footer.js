@@ -14,7 +14,7 @@ export default class footer extends React.Component {
         return(
             <div className="footer-container">
                     <a>
-                        <img className="gz-logo" src="GZ-logo.png"/>
+                        <img className="gz-logo" src="images/icons/GZ-logo.png"/>
                     </a>
                     <span className="nav-container">
                         <span className="nav-item">Home</span>
