@@ -8,7 +8,7 @@ injectTapEventPlugin();
 
 require('./AddressSearcher.scss');
 
-const koordinatesLayerId = 1513;
+const koordinatesLayerId = 1349;
 const koordinatesApiKey = '979e84540aac481685f1e9ea5331cc35';
 const googleApiKey = 'AIzaSyAE7vD-Xl1RjQ_PPzinv2omvZy1HqiHI3c';
 
@@ -17,7 +17,7 @@ export default class AddressSearcher extends React.Component {
         super(props, context);
 
         this.state = {
-            localBoard: "",
+            ward: "",
             value: "",
             searching: false
         };
@@ -50,33 +50,33 @@ export default class AddressSearcher extends React.Component {
                 let lat = response.data.results[0].geometry.location.lat;
                 let lng = response.data.results[0].geometry.location.lng;
 
-                this.getLocalBoardFromLatLng(lat,lng);
+                this.getWardFromLatLng(lat,lng);
             })
             .catch((err) => {
                 this.setState({searching: false});
-                this.props.setLocalBoard('');
-                this.setState({localBoard: ''});
+                this.props.setWard('');
+                this.setState({ward: ''});
                 console.debug(err)
             });
     }
 
-    getLocalBoardFromLatLng(lat, lng){
+    getWardFromLatLng(lat, lng){
         axios.get('https://api.koordinates.com/api/vectorQuery.json/?key=' + koordinatesApiKey + '&layer=' + koordinatesLayerId + '&x=' + lng + '&y=' + lat)
             .then((koordinatesResponse) => {
-                let localBoard = koordinatesResponse.data.vectorQuery.layers[koordinatesLayerId].features[0].properties.CB_NAME;
-                if(localBoard === 'Te Irirangi Local Board Area'){
-                    localBoard = 'Howick Local Board Area';
+                let ward = koordinatesResponse.data.vectorQuery.layers[koordinatesLayerId].features[0].properties.WARD_NAME;
+                if(ward === 'Te Irirangi Ward'){
+                    ward = 'Howick Ward';
                 }
-                localBoard = localBoard.replace(' Local Board Area', '');
-                this.setState({localBoard: localBoard});
+                ward = ward.replace(' Ward', '');
+                this.setState({ward: ward});
                 this.setState({searching: false});
-                this.props.setLocalBoard(localBoard);
+                this.props.setWard(ward);
 
             })
             .catch((err) => {
                 console.debug(err);
                 this.setState({searching: false});
-                this.props.setLocalBoard('');
+                this.props.setWard('');
             });
     }
 
@@ -142,7 +142,7 @@ export default class AddressSearcher extends React.Component {
                     <div id="loading-bar">
                         { this.state.searching ? <CircularProgress mode="indeterminate"/> : null }
                     </div>
-                    { !this.state.searching && this.state.localBoard?  <div>Your Local Board is: {this.state.localBoard}</div> : null }
+                    { !this.state.searching && this.state.ward?  <div>Your Local Board is: {this.state.ward}</div> : null }
                 </div>
             </div>
         );
