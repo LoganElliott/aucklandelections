@@ -170,7 +170,7 @@ export default class card extends React.Component {
 
         let name = val.c[0].v;
         let nameSplit = name.split(' ');
-        let image = 'images/candidates/' + name.replace(' ','-') + '.png';
+        let image = 'images/candidates/' + name.replace(/\s/g,'-') + '.png';
 
         return {
             'key': nameSplit[0]+nameSplit[1],
@@ -283,7 +283,7 @@ export default class card extends React.Component {
 
             this.state.scoreBreakdowns[category].questions.map((v, index) => {
                 breakdown.push(
-                    <div key={candidate.key + v.title.replace(' ', '')}
+                    <div key={candidate.key + v.title.replace(/\s/g,'')}
                          className="candidate-breakdown__category-score">
                         <div className="candidate-breakdown__category-icon-and-score">
                             <div>

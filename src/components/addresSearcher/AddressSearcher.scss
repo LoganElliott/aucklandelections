@@ -1,7 +1,9 @@
-#local-board-input-and-button {
+$dark-text: rgb(93,93,93);
+
+.local-board-input-and-button {
   text-align: center;
   color: snow;
-  padding: 40px;
+  padding: 0 40px 40px 40px;
 }
 
 .find-my-voting-area-button :first-child {
@@ -21,4 +23,18 @@
 
 .field-button-container {
   display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.voting-area {
+  &__ward {
+    font-size: 50px;
+    font-weight: 900;
+  }
+
+  &__preamble {
+    color: $dark-text;
+    font-size: 20px;
+  }
 }

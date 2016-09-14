@@ -90,10 +90,6 @@ export default class AddressSearcher extends React.Component {
             margin: 12
         };
 
-        const genZeroStyle = {
-            fontWeight: 900
-        };
-
         const localElectionScoreCards = {
             fontSize: '50px'
         };
@@ -104,22 +100,19 @@ export default class AddressSearcher extends React.Component {
         };
 
         let infoText = <div>
-                <div style={genZeroStyle}>
-                    GENERATION ZERO'S
-                </div>
                 <div style={localElectionScoreCards}>
-                    Local Election Scorecards
+                    Auckland Election Scorecards
                 </div>
                 <div style={aboutText}>
                     We sat down and grilled each Auckland Council candidate one by one.
                     <br/>
                     Here are their results.
                 </div>
-            </div>
+            </div>;
 
         return(
             <div>
-                <div id="local-board-input-and-button" className='centre-textField'>
+                <div className='local-board-input-and-button centre-textField'>
 
                     {infoText}
                     <div className='field-button-container'>
@@ -142,7 +135,20 @@ export default class AddressSearcher extends React.Component {
                     <div id="loading-bar">
                         { this.state.searching ? <CircularProgress mode="indeterminate"/> : null }
                     </div>
-                    { !this.state.searching && this.state.ward?  <div>Your Local Board is: {this.state.ward}</div> : null }
+                    { !this.state.searching && this.state.ward
+                        ?
+                        <div>
+                            <div className="voting-area__preamble">
+                                Your voting area is the
+                            </div>
+                            <div className="voting-area__ward">
+                                {this.state.ward.toUpperCase()} WARD
+                            </div>
+                            <div>
+                                <img src={"/images/wardIcons/" + this.state.ward.replace(/\s/g,'') + '.png'}></img>
+                            </div>
+                        </div>
+                        : null }
                 </div>
             </div>
         );

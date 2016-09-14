@@ -25,6 +25,7 @@ export default class App extends Component {
         <MuiThemeProvider>
             <div>
                 <Header/>
+                <div style={{height: '83px'}}></div>
                 <AddressSearcher setWard={this.setWard}/>
                 <Cards ward={this.state.ward}/>
                 <div style={{height: '83px'}}></div>
