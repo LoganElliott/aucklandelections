@@ -10,6 +10,8 @@ $grey-text: #B1B1B1;
 $light-dark-text: rgba(77, 86, 93, .77);
 $dark-text: rgb(93,93,93);
 
+$small: 1000px;
+
 .candidate-main {
   display: flex;
   flex-wrap: wrap;
@@ -21,6 +23,12 @@ $dark-text: rgb(93,93,93);
     display: flex;
     margin: 10px;
     position: relative;
+
+    @media screen and (max-width: $small) {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
   }
 
   &-details {
@@ -31,6 +39,7 @@ $dark-text: rgb(93,93,93);
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: relative;
   }
 
   &-mayor {
@@ -119,10 +128,11 @@ $dark-text: rgb(93,93,93);
   }
 
   &-score-breakdown-button {
-    display: flex;
     justify-content: center;
     bottom: 0;
-    width: 200px;
+    left: 0;
+    right: 0;
+    display: block;
     position: absolute;
   }
 }
@@ -179,10 +189,25 @@ $dark-text: rgb(93,93,93);
 .candidate-breakdown {
   width: 616px;
   border-radius: 12px;
+  @media screen and (max-width: $small) {
+    width: 300px;
+  }
+
+  &-container {
+    border-radius: 12px;
+
+    @media screen and (max-width: $small) {
+      width: 300px;
+    }
+  }
 
   &-inner {
     width: 600px;
     border-radius: 12px;
+
+    @media screen and (max-width: $small) {
+      width: 300px;
+    }
   }
 
   &-mayor {
@@ -201,6 +226,13 @@ $dark-text: rgb(93,93,93);
     margin: 8px 8px 0 8px;
     width: 100px;
     height: 100px;
+
+    @media screen and (max-width: $small) {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+    }
+
   }
 
   &--selected {
@@ -213,9 +245,23 @@ $dark-text: rgb(93,93,93);
     font-size: 20px;
     cursor: pointer;
 
+    @media screen and (max-width: $small) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 11px;
+      margin: 3px;
+    }
+
     &-scores {
       display: flex;
       flex-wrap: wrap;
+
+      @media screen and (max-width: $small) {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     &-score {
@@ -253,6 +299,12 @@ $dark-text: rgb(93,93,93);
       margin-left: 18px;
       padding-top: 5px;
 
+      @media screen and (max-width: $small) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       &-category {
         font-size: 30px;
         font-weight: bolder;
@@ -266,6 +318,10 @@ $dark-text: rgb(93,93,93);
         font-size: 30px;
         font-weight: bolder;
         margin-left: 90px;
+
+        @media screen and (max-width: $small) {
+          margin-left: 0;
+        }
       }
     }
   }
@@ -303,6 +359,7 @@ $dark-text: rgb(93,93,93);
     color: $dark-text;
     margin: 20px 0 15px 0;
     font-weight: 700;
+    text-align: center;
   }
 }
 
@@ -315,8 +372,8 @@ $dark-text: rgb(93,93,93);
 .candidate-grade-bubble {
   position: absolute;
   z-index: 1;
-  margin-left: 115px;
-  margin-top: -5px;
+  top: -5px;
+  right: -5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,4 +394,13 @@ $dark-text: rgb(93,93,93);
 
 .card-3 {
   box-shadow: inset 0 -10px 20px rgba(0,0,0,0.19);
+}
+
+
+.candidate-breakdown-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 300px;
+  flex-direction: column;
 }

@@ -8,6 +8,12 @@
   display: inline-block;
   align-items: center;
   color: snow;
+
+  @media screen and (max-width: 700px) {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .gz-logo {
@@ -20,4 +26,6 @@
 
 .nav-item {
   padding: 0 10px 0 10px;
+  color: snow;
+  text-decoration: inherit;
 }

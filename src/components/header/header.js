@@ -17,9 +17,11 @@ export default class header extends React.Component {
                         <img className="gz-logo" src="images/icons/GZ-logo.png"/>
                     </a>
                     <span className="nav-container">
-                        <span className="nav-item">Home</span>
-                        <span className="nav-item">Our Criterea</span>
-                        <span className="nav-item">About Us</span>
+                        <a href="http://aucklandelections.nz" className="nav-item">Home</a>
+                        <a href="http://details.aucklandelections.nz/how-to-vote" className="nav-item">How To Vote</a>
+                        <a href="http://details.aucklandelections.nz/criteria" className="nav-item">Our Criteria</a>
+                        <a href="http://localelections.generationzero.org.nz" className="nav-item">Other Cities</a>
+                        <a href="http://details.aucklandelections.nz/about-us" className="nav-item">About Us</a>
                     </span>
             </div>
         );
