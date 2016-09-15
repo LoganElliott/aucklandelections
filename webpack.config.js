@@ -45,7 +45,13 @@ let config = {
             title: 'election',
             template: 'index.template.html',
             hash: true
-        })
+        }),
+        new CopyWebpackPlugin([
+                {
+                    from: 'images/**/*'
+                }
+            ]
+        )
     ]
 };
 
