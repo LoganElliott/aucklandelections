@@ -58,6 +58,7 @@ let config = {
 
 if (process.env.NODE_ENV === 'production') {
     config.output.path = __dirname + '/dist';
+    config.output.sourceMapFilename = '';
     config.devtool = 'source-map';
     config.devServer = null;
     config.plugins.push(new webpack.DefinePlugin({
