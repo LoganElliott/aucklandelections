@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import AddressSearcher from '../components/addresSearcher/AddressSearcher';
 import Cards from '../components/cards/cards';
@@ -7,6 +8,10 @@ import Header from '../components/header/header';
 import Footer from '../components/footer/footer';
 
 require('./app.scss');
+
+const muiTheme = getMuiTheme({
+    fontFamily: 'P22-underground, sans-serif',
+});
 
 export default class App extends Component {
     constructor(props, context){
@@ -24,7 +29,7 @@ export default class App extends Component {
 
   render() {
     return (
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={muiTheme}>
             <div>
                 <Header/>
                 <div className="headerBuffer"></div>
