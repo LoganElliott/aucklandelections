@@ -12,7 +12,7 @@ branches:
   - master
 deploy:
   provider: s3
-  access_key_id: $AWS_ACCESS_KEY # declared in Travis repo settings
+  access_key_id: $AWS_ACCESS_ID
   secret_access_key: $AWS_SECRET_KEY
   bucket: "aucklandelections.nz"
   skip_cleanup: true
