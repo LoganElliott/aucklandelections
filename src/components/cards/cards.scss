@@ -190,6 +190,8 @@ $small: 1000px;
 .candidate-breakdown {
   width: 616px;
   border-radius: 12px;
+  padding-bottom: 8px;
+
   @media screen and (max-width: $small) {
     width: 300px;
   }
@@ -207,7 +209,9 @@ $small: 1000px;
     border-radius: 12px;
 
     @media screen and (max-width: $small) {
-      width: 300px;
+      width: 95%;
+      margin: auto;
+      height: 95%;
     }
   }
 
@@ -348,6 +352,8 @@ $small: 1000px;
   justify-content: center;
   background-color: white;
   padding-bottom: 50px;
+  flex-direction: column;
+  width: 100%;
 
   &-inner {
     display: flex;
@@ -384,24 +390,6 @@ $small: 1000px;
   background-image: linear-gradient(180deg, #747473, #747473);
 }
 
-.arrow-up {
-  width: 0;
-  height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-
-  border-bottom: 30px solid black;
-}
-
 .card-3 {
   box-shadow: inset 0 -10px 20px rgba(0,0,0,0.19);
-}
-
-
-.candidate-breakdown-mobile {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 300px;
-  flex-direction: column;
 }
