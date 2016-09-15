@@ -86,7 +86,7 @@ export default class CandidateDetails extends Component {
                 {candidateImage(this.props.candidate)}
                 <div>
                     <h1 className='councillor-info__name councillor-info__name-first'>{this.props.candidate.firstName}</h1>
-                    <h1 className='councillor-info__name'>{this.props.candidate.lastName}</h1>
+                    <h1 className='councillor-info__name'>{this.props.candidate.lastName.toUpperCase()}</h1>
                     <h3 className='councillor-info__ticket'>{this.props.candidate.ticket}</h3>
                 </div>
                 {candidateInfo(this.props.candidate)}
