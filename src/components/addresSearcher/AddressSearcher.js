@@ -110,6 +110,10 @@ export default class AddressSearcher extends React.Component {
                 </div>
             </div>;
 
+        let fieldStyle = {
+            color: 'rgb(93,93,93)',
+        };
+
         return(
             <div>
                 <div className='local-board-input-and-button centre-textField'>
@@ -118,6 +122,9 @@ export default class AddressSearcher extends React.Component {
                     <div className='field-button-container'>
                         <div>
                             <TextField hintText="Enter Address"
+                                       floatingLabelFixed={true}
+                                       floatingLabelStyle={fieldStyle}
+                                       floatingLabelText="e.g. 1 Richmond Rd Ponsonby"
                                        value={this.state.value}
                                        onChange={this.handleChange}
                                        style={textFieldStyle}

@@ -28,7 +28,7 @@ export default class App extends Component {
                 <div style={{height: '83px'}}></div>
                 <AddressSearcher setWard={this.setWard}/>
                 <Cards ward={this.state.ward}/>
-                <div style={{height: '83px'}}></div>
+                <div style={{height: '83px',marginTop: '100px'}}></div>
                 <Footer/>
             </div>
         </MuiThemeProvider>
