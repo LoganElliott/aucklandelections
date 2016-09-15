@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import FlatButton from 'material-ui/FlatButton';
 import map from 'lodash/map';
 import jsonp from 'jsonp';
+import ReactImageFallback from "react-image-fallback";
 
 require('./cards.scss');
 
@@ -216,7 +217,13 @@ export default class card extends React.Component {
         let candidateGrade = candidate => <div className="candidate-grade-bubble"><div className="candidate-grade">{candidate.overall}</div></div>;
 
         let candidateImage = candidate => <div className='councillor-image__container'>
-            <img className='councillor-image__value' height={175} width={175} src={candidate.image}/>
+            <ReactImageFallback
+                className='councillor-image__value'
+                height={175}
+                width={175}
+                src={candidate.image}
+                fallbackImage='images   /candidates/missing.jpg'>
+            </ReactImageFallback>
             {candidateGrade(candidate)}
         </div>;
 
