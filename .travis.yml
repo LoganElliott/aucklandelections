@@ -9,4 +9,4 @@ script:
   - npm run build
 branches:
   only:
-  -master
+  - master
