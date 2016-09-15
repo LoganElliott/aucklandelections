@@ -50,6 +50,9 @@ let config = {
         new CopyWebpackPlugin([
                 {
                     from: 'images/**/*'
+                },
+                {
+                    from: 'favicon.ico'
                 }
             ]
         )

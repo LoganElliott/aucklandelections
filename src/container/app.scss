@@ -1,0 +1,36 @@
+$grey-text: #B1B1B1;
+$light-dark-text: rgba(77, 86, 93, .77);
+$dark-text: rgb(93,93,93);
+
+.headerBuffer {
+  height: 120px;
+
+  @media screen and (max-width: 531px) {
+    height: 150px;
+  }
+}
+
+.what-we-asked-container {
+  margin: 10px;
+  text-align: center;
+}
+
+.what-we-asked {
+  color: $dark-text;
+  font-size: 30px;
+  font-weight: 900;
+  margin: 20px;
+
+  &-text {
+    color: $light-dark-text;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 34px;
+    width: 50%;
+    margin: auto;
+
+    @media screen and (max-width: 750px) {
+      width: 90%;
+    }
+  }
+}

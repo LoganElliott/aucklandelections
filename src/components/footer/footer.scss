@@ -8,11 +8,20 @@
   display: inline-block;
   align-items: center;
   background-color: #747473;
-}
+  line-height: 43px;
 
-@media screen and (max-width: 465px) {
-  .footer-container {
-    display: inline-flex;
+}
+.nav-container-footer {
+  width: 100%;
+  @media screen and (max-width: 700px) {
+    justify-content: center;
+    display: flex;
     flex-wrap: wrap;
   }
+}
+
+.authorised-by {
+  color: #b1b1ad;
+  font-size: 12px;
+  text-align: center;
 }
