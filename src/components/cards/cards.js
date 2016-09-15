@@ -260,7 +260,7 @@ export default class card extends React.Component {
         let candidateMarkersConsensus = candidate => <div className='councillor-info-markers-consensus'>
             <hr className='councillor-info-markers-consensus-line'/>
             <div className='councillor-info-markers-consensus-title'>
-                Marker's Consensus
+                {'Marker\'s Consensus'}
                 <br/>
             </div>
             '{candidate.consensus}'
