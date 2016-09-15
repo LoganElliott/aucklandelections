@@ -10,3 +10,12 @@ script:
 branches:
   only:
   - master
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY # declared in Travis repo settings
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: "aucklandelections.nz"
+  skip_cleanup: true
+  region: ap-southeast-2
+  local-dir: dist
+  acl: public_read
