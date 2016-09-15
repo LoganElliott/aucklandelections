@@ -7,9 +7,6 @@ cache:
   - node_modules
 script: 
   - npm run build
-branches:
-  only:
-  - master
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_ID
@@ -19,3 +16,5 @@ deploy:
   region: ap-southeast-2
   local-dir: dist
   acl: public_read
+  on:
+    branch: master
