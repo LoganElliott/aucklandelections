@@ -1,7 +1,9 @@
 import React, {PropTypes} from 'react'
 import FlatButton from 'material-ui/FlatButton';
+import CircularProgress from 'material-ui/CircularProgress'
 import map from 'lodash/map';
 import jsonp from 'jsonp';
+import ReactImageFallback from "react-image-fallback";
 
 require('./cards.scss');
 
@@ -216,7 +218,13 @@ export default class card extends React.Component {
         let candidateGrade = candidate => <div className="candidate-grade-bubble"><div className="candidate-grade">{candidate.overall}</div></div>;
 
         let candidateImage = candidate => <div className='councillor-image__container'>
-            <img className='councillor-image__value' height={175} width={175} src={candidate.image}/>
+            <ReactImageFallback
+                className='councillor-image__value'
+                height={175}
+                width={175}
+                src={candidate.image}
+                fallbackImage='images   /candidates/missing.jpg'>
+            </ReactImageFallback>
             {candidateGrade(candidate)}
         </div>;
 
@@ -224,36 +232,19 @@ export default class card extends React.Component {
         <div className="councillor-info__scores-container">
             <div>
                 {categories.map(category =>
-                    <img className='councillor-info__category'
+                    <img key={candidate+category+'breakdown-images'} className='councillor-info__category'
                          src={'images/icons/' + category.charAt(0).toUpperCase() + category.slice(1) + '-Icon.png'}
                     />
                 )}
             </div>
             <div className='councillor-info__scores'>
-            <div
-                className='councillor-info__score councillor-info__category councillor-info__transport'>
-                <div className='councillor-info__score-value'>
-                    {candidate.transport}
-                </div>
-            </div>
-            <div
-                className='councillor-info__score councillor-info__category councillor-info__housing'>
-                <div className='councillor-info__score-value'>
-                    {candidate.housing}
-                </div>
-            </div>
-            <div
-                className='councillor-info__score councillor-info__category councillor-info__environment'>
-                <div className='councillor-info__score-value'>
-                    {candidate.environment}
-                </div>
-            </div>
-            <div
-                className='councillor-info__score councillor-info__category councillor-info__competence'>
-                <div className='councillor-info__score-value'>
-                    {candidate.competence}
-                </div>
-            </div>
+                {categories.map(category =>
+                    <div key={candidate+category+'breakdown-scores'}
+                        className={'councillor-info__score councillor-info__category councillor-info__' + category}>
+                    <div className='councillor-info__score-value'>
+                        {candidate[category]}
+                    </div>
+                </div>)}
             </div>
         </div>;
 
@@ -299,7 +290,7 @@ export default class card extends React.Component {
                 );
             });
 
-            return <div>
+            return <div key={candidate+category+'breakdown-scores'}>
                 <div className="candidate-breakdown__category-header">
                     <span className="candidate-breakdown__category-header-category">{category.toUpperCase()}</span>
                     <span className="candidate-breakdown__category-header-detailed-score"> - Detailed Scoring</span>
@@ -342,12 +333,13 @@ export default class card extends React.Component {
                 return <div className={'candidate-breakdown ' + getCandidateColourClass(candidate)} >
                     <div className="candidate-breakdown__icons">
                         {categories.map((category =>
-                            <div className='candidate-breakdown__category'>
+                            <div key={category}
+                                 className='candidate-breakdown__category'>
                                 <img className='candidate-breakdown__big-icon'
                                      src={'images/icons/' + category.charAt(0).toUpperCase() + category.slice(1) + '-Icon.png'}
                                      onClick={() => this.selectCategory(candidate.key, category)}
                                 />
-                                {category.toUpperCase()}
+                                <span className={this.state.categoriesShown.some((val) => val === candidate.key + category) ? 'candidate-breakdown--selected' :''}>{category.toUpperCase()}</span>
                             </div>
                         ))}
                     </div>
@@ -403,16 +395,28 @@ export default class card extends React.Component {
             }
         });
 
+        let mayor = <div className="candidate-section card-3">
+            <div className="candidate-section-title">
+                {'Score for Mayor of Auckland'.toUpperCase()}
+                </div>
+            <div className="candidate-section-inner">
+                {mayorCandidates}
+            </div>
+        </div>;
+
+        let councillor = <div className="candidate-section card-3">
+            <div className="candidate-section-title">
+                {('Score for Councillor (' + this.props.ward + ')').toUpperCase()}
+            </div>
+            <div className="candidate-section-inner">
+                {councillorCandidates}
+            </div>
+        </div>;
+
         return <div className='candidate-main'>
-                <div className="candidate-section">
-                    {mayorCandidates}
-                </div>
-                <div className="candidate-section">
-                    {councillorCandidates}
-                </div>
-                <div className="candidate-section">
-                    {localBoardCandidates}
-                </div>
+            {this.props.ward ? councillor : ''}
+            {this.state.candidates.length > 0 ? mayor : ''}
+            {this.state.candidates.length === 0 ? <CircularProgress mode="indeterminate"/> : '' }
             </div>
     }
 }
