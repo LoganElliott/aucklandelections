@@ -19,7 +19,7 @@ export default class CandidateDetails extends Component {
                 height={175}
                 width={175}
                 src={candidate.image}
-                fallbackImage='images   /candidates/missing.jpg'>
+                fallbackImage='images/candidates/missing.jpg'>
             </ReactImageFallback>
             {candidateGrade(candidate)}
         </div>;

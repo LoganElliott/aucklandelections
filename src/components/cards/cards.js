@@ -66,7 +66,7 @@ export default class card extends React.Component {
         scores.environment = environment;
         scores.competence = [val.c[15].v];
 
-        let name = val.c[0].v;
+        let name = val.c[0].v.trim();
         let nameSplit = name.split(' ');
         let image = 'images/candidates/' + name.replace(/\s/g,'-') + '.png';
 
