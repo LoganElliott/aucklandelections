@@ -135,6 +135,7 @@ $small: 1000px;
     right: 0;
     display: block;
     position: absolute;
+    padding-bottom: 4px;
   }
 }
 
@@ -217,14 +218,26 @@ $small: 1000px;
 
   &-mayor {
     background-color: $mayor-breakdown-colour;
+
+    &-button :first-child {
+      background-color: $mayor-breakdown-colour;
+    }
   }
 
   &-councillor {
     background-color: $councillor-breakdown-colour;
+
+    &-button :first-child {
+      background-color: $councillor-breakdown-colour;
+    }
   }
 
   &-local-board {
     background-color: $local-board-breakdown-colour;
+
+    &-button :first-child {
+      background-color: $local-board-breakdown-colour;
+    }
   }
 
   &__big-icon {
