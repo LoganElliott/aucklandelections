@@ -53,18 +53,24 @@ export default class card extends React.Component {
         let environment = [];
 
         map(val.c.slice(1,9), (a) => {
-            transport.push(a.v);
+            if(a){
+                transport.push(a.v)
+            }
         });
         map(val.c.slice(9,12), (a) => {
-            housing.push(a.v);
+            if(a) {
+                housing.push(a.v);
+            }
         });
         map(val.c.slice(12,15), (a) => {
-            environment.push(a.v);
+            if(a) {
+                environment.push(a.v);
+            }
         });
         scores.transport = transport;
         scores.housing = housing;
         scores.environment = environment;
-        scores.competence = [val.c[15].v];
+        scores.competence = val.c[15] ? [val.c[15].v] :[];
 
         let name = val.c[0].v.trim();
         let nameSplit = name.split(' ');

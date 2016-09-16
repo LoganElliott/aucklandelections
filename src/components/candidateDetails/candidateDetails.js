@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactImageFallback from "react-image-fallback";
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const categories = ['transport', 'housing', 'environment', 'competence'];
 
@@ -9,6 +9,14 @@ export default class CandidateDetails extends Component {
         super(props, context);
 
     }
+
+    getCandidateBreakdownColourClass (candidate) {
+        if(candidate.standingForMayor){
+            return 'candidate-breakdown-mayor-button';
+        } else if(candidate.standingForCouncillor) {
+            return 'candidate-breakdown-councillor-button';
+        }
+    };
 
     render() {
         let candidateGrade = candidate => <div className="candidate-grade-bubble"><div className="candidate-grade">{candidate.overall}</div></div>;
@@ -66,11 +74,16 @@ export default class CandidateDetails extends Component {
         let breakdownButton = (candidate) => <div className='councillor-score-breakdown-button'>
             {!this.props.expandedIds.some((val) => val === candidate.key)
                 ?
-                <FlatButton label='Show Score Breakdown'
-                            onTouchTap={() => {this.props.handleShow(candidate.key);this.props.selectCategory(candidate.key, 'transport');}}/>
+                <RaisedButton label='Show Score Breakdown'
+                              className={this.getCandidateBreakdownColourClass(candidate)}
+                            disabled={!candidate.consensus}
+                            onTouchTap={() => {this.props.handleShow(candidate.key);this.props.selectCategory(candidate.key, 'transport');}}
+                />
                 :
-                <FlatButton label='Hide Score Breakdown'
-                            onTouchTap={() => this.props.handleHide(candidate.key)}/>
+                <RaisedButton label='Hide Score Breakdown'
+                              className={this.getCandidateBreakdownColourClass(candidate)}
+                              onTouchTap={() => this.props.handleHide(candidate.key)}
+                />
             }
         </div>;
 
