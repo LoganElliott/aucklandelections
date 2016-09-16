@@ -19,7 +19,8 @@ export default class AddressSearcher extends React.Component {
         this.state = {
             ward: "",
             value: "",
-            searching: false
+            searching: false,
+            addressError: '',
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -43,6 +44,16 @@ export default class AddressSearcher extends React.Component {
         }
     }
 
+    onAddressSearchError(err) {
+        this.setState({
+            searching: false,
+            ward: '',
+            addressError: 'Not Valid Auckland Address'
+        });
+        this.props.setWard('');
+        console.debug(err);
+    }
+
     getLatLngFromAddress(address){
         this.setState({searching: true});
         axios.get('https://maps.googleapis.com/maps/api/geocode/json?region=NZ&address=' + address + '&key=' + googleApiKey)
@@ -52,12 +63,7 @@ export default class AddressSearcher extends React.Component {
 
                 this.getWardFromLatLng(lat,lng);
             })
-            .catch((err) => {
-                this.setState({searching: false});
-                this.props.setWard('');
-                this.setState({ward: ''});
-                console.debug(err)
-            });
+            .catch((err) => this.onAddressSearchError(err));
     }
 
     getWardFromLatLng(lat, lng){
@@ -68,16 +74,15 @@ export default class AddressSearcher extends React.Component {
                     ward = 'Howick Ward';
                 }
                 ward = ward.replace(' Ward', '');
-                this.setState({ward: ward});
-                this.setState({searching: false});
+                this.setState({
+                    ward: ward,
+                    searching: false,
+                    addressError: ''
+                });
                 this.props.setWard(ward);
 
             })
-            .catch((err) => {
-                console.debug(err);
-                this.setState({searching: false});
-                this.props.setWard('');
-            });
+            .catch((err) => this.onAddressSearchError(err));
     }
 
     render() {
@@ -128,6 +133,7 @@ export default class AddressSearcher extends React.Component {
                                        value={this.state.value}
                                        onChange={this.handleChange}
                                        style={textFieldStyle}
+                                       errorText={this.state.addressError}
                                        onKeyDown={this.handleEnter}
                             />
                         </div>
