@@ -53,9 +53,11 @@ export default class AddressSearcher extends React.Component {
                 this.getWardFromLatLng(lat,lng);
             })
             .catch((err) => {
-                this.setState({searching: false});
+                this.setState({
+                    searching: false,
+                    ward: ''
+                });
                 this.props.setWard('');
-                this.setState({ward: ''});
                 console.debug(err)
             });
     }
@@ -75,7 +77,10 @@ export default class AddressSearcher extends React.Component {
             })
             .catch((err) => {
                 console.debug(err);
-                this.setState({searching: false});
+                this.setState({
+                    searching: false,
+                    ward: ''
+                });
                 this.props.setWard('');
             });
     }
