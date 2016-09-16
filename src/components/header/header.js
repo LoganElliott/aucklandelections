@@ -20,7 +20,7 @@ export default class header extends React.Component {
                         <a href="http://aucklandelections.nz" className="nav-item">Home</a>
                         <a href="http://details.aucklandelections.nz/how-to-vote" className="nav-item">How To Vote</a>
                         <a href="http://details.aucklandelections.nz/criteria" className="nav-item">Our Criteria</a>
-                        <a href="http://localelections.generationzero.org.nz" className="nav-item">Other Cities</a>
+                        <a href="http://localelections.generationzero.org.nz" className="nav-item">Other Regions</a>
                         <a href="http://details.aucklandelections.nz/about-us" className="nav-item">About Us</a>
                     </span>
             </div>
