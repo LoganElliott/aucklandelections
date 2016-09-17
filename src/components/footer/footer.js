@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import ShareButtons from '../../components/shareButtons/shareButtons';
 
 require('./footer.scss');
 
@@ -25,7 +26,9 @@ export default class footer extends React.Component {
                             <a href="http://details.aucklandelections.nz/about-us" className="nav-item">About Us</a>
                         </span>
                     </div>
-                    <div className="authorised-by">Authorised by Leroy Beckett, Generation Zero, 21 Shaddock Street, AKL</div>
+                <ShareButtons/>
+
+                <div className="authorised-by">Authorised by Leroy Beckett, Generation Zero, 21 Shaddock Street, AKL</div>
             </div>
         );
     }

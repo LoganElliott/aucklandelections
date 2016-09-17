@@ -166,7 +166,7 @@ export default class AddressSearcher extends React.Component {
                     {textFieldInput}
                     {loadingCircle}
                     { !this.state.searching && this.state.ward
-                        ? {searchResult}
+                        ? searchResult
                         : null }
                 </div>
             </div>
