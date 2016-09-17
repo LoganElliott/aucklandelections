@@ -20,13 +20,23 @@
             ga('create', 'UA-54342922-1', 'auto');
             ga('send', 'pageview');
         </script>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '113693592424271',
+                    xfbml      : true,
+                    version    : 'v2.7'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
     </head>
     <body style="background-color: #f4a38d; font-family: P22-underground, sans-serif; margin: 0">
         <div id="app"></div>
