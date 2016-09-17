@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
+import Header from '../components/header/header';
 import AddressSearcher from '../components/addresSearcher/AddressSearcher';
 import Cards from '../components/cards/cards';
-import Header from '../components/header/header';
 import Footer from '../components/footer/footer';
 
 require('./app.scss');
