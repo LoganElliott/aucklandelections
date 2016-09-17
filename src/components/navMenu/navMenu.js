@@ -1,4 +1,5 @@
 import React from 'react'
+import {iconImagesPath} from '../../conf/conf';
 
 require('./navMenu.scss');
 
@@ -11,7 +12,7 @@ export default class NavMenu extends React.Component {
         return(
             <div className="nav">
                 <a>
-                    <img className="nav__gz-logo" src="images/icons/GZ-logo.png"/>
+                    <img className="nav__gz-logo" src={iconImagesPath + 'GZ-logo.png'}/>
                 </a>
                 <span className="nav__items">
                         <a href="http://aucklandelections.nz" className="nav__items-item">Home</a>

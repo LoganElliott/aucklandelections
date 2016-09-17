@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import jsonp from 'jsonp';
 
 import Candidate from '../candidate/candidate'
+import {candidateImagesPath} from '../../conf/conf';
 
 require('./candidateCards.scss');
 
@@ -16,10 +17,8 @@ export default class card extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-
         this.state = {
             candidates: [],
-
         };
     }
 
@@ -74,7 +73,7 @@ export default class card extends React.Component {
 
         let name = val.c[0].v.trim();
         let nameSplit = name.split(' ');
-        let image = 'images/candidates/' + name.replace(/\s/g,'-') + '.png';
+        let image = candidateImagesPath + name.replace(/\s/g,'-') + '.png';
 
         return {
             'key': nameSplit[0]+nameSplit[1],
@@ -96,8 +95,6 @@ export default class card extends React.Component {
     }
 
     render() {
-
-
         let mayorCandidates = [];
         let councillorCandidates = [];
         let localBoardCandidates = [];
@@ -125,25 +122,25 @@ export default class card extends React.Component {
             }
         });
 
-        let mayor = <div className="candidate-section card-3">
-            <div className="candidate-section-title">
+        let mayor = <div className="candidates__section shadow">
+            <div className="candidates__title">
                 {'Scores for Mayor of Auckland'.toUpperCase()}
                 </div>
-            <div className="candidate-section-inner">
+            <div className="candidates__inner">
                 {mayorCandidates}
             </div>
         </div>;
 
-        let councillor = <div className="candidate-section card-3">
-            <div className="candidate-section-title">
+        let councillor = <div className="candidates__section card-3">
+            <div className="candidates__title">
                 {('Scores for Councillor (' + this.props.ward + ')').toUpperCase()}
             </div>
-            <div className="candidate-section-inner">
+            <div className="candidates__inner">
                 {councillorCandidates}
             </div>
         </div>;
 
-        return <div className='candidate-main'>
+        return <div className='candidates'>
             {this.props.ward ? councillor : ''}
             {this.state.candidates.length > 0 ? mayor : ''}
             {this.state.candidates.length === 0 ? <CircularProgress mode="indeterminate"/> : '' }

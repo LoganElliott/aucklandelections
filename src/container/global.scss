@@ -13,4 +13,49 @@ $mayor-breakdown-colour: rgb(236,248,255);
 $councillor-breakdown-colour: rgb(253,237,232);
 $local-board-breakdown-colour: rgb(255,246,233);
 
+$transport: rgb(254,229,193);
+$housing: rgb(250,218,226);
+$environment: rgb(190,223,217);
+$competence: rgb(213,237,252);
+
 $small: 1000px;
+
+.candidate {
+  &-mayor {
+    background-color: $mayor-colour;
+  }
+
+  &-councillor {
+    background-color: $councillor-colour;
+  }
+
+  &-local-board {
+    background-color: $local-board-colour;
+  }
+
+  &-breakdown {
+    &-mayor {
+      background-color: $mayor-breakdown-colour;
+
+      &-button :first-child {
+        background-color: $mayor-breakdown-colour;
+      }
+    }
+
+    &-councillor {
+      background-color: $councillor-breakdown-colour;
+
+      &-button :first-child {
+        background-color: $councillor-breakdown-colour;
+      }
+    }
+
+    &-local-board {
+      background-color: $local-board-breakdown-colour;
+
+      &-button :first-child {
+        background-color: $local-board-breakdown-colour;
+      }
+    }
+  }
+}

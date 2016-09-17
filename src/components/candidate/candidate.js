@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import CandidateDetails from '../candidateDetails/candidateDetails';
 import CandidateBreakdown from '../candidateBreakdown/candidateBreakdown'
 
+require('./candidate.scss');
 
 export default class Candidate extends Component {
     constructor(props, context){
