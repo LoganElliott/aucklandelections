@@ -11,7 +11,7 @@ require('./AddressSearcher.scss');
 const koordinatesLayerId = 1349;
 const koordinatesApiKey = '979e84540aac481685f1e9ea5331cc35';
 const googleApiKey = 'AIzaSyAE7vD-Xl1RjQ_PPzinv2omvZy1HqiHI3c';
-const boundingBox = '35.5188,175.9515|37.5489173.8257';
+const componentsFiltering = 'components=country:NZ';
 
 export default class AddressSearcher extends React.Component {
     constructor(props, context) {
@@ -57,7 +57,7 @@ export default class AddressSearcher extends React.Component {
 
     getLatLngFromAddress(address){
         this.setState({searching: true});
-        axios.get('https://maps.googleapis.com/maps/api/geocode/json?region=NZ&address=' + address.trim() + ' Auckland' +'&' + boundingBox + '&key=' + googleApiKey)
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json?region=NZ&address=' + address.trim() +'&' + componentsFiltering + '&key=' + googleApiKey)
             .then((response) => {
                 let lat = response.data.results[0].geometry.location.lat;
                 let lng = response.data.results[0].geometry.location.lng;
