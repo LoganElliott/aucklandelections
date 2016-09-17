@@ -6,7 +6,7 @@ import jsonp from 'jsonp';
 
 import Candidate from '../candidate/candidate'
 
-require('./cards.scss');
+require('./candidateCards.scss');
 
 const googleSpreadSheetKey = '1qK6ph0ZU1dGsTjkeIiPLjVRpyRQKo_ItDrnqMZmRjUU';
 const query = 'SELECT%20B%2C%20D%2C%20F%2C%20H%2C%20J%2C%20L%2C%20N%2C%20P%2C%20R%2C%20T%2C%20V%2C%20X%2C%20Z%20%2CAB%20%2C%20AD%2C%20AF%2C%20AG%2C%20AI%2C%20AN%2C%20AO%2C%20AP%2C%20AQ%2C%20AR%2C%20AS%2C%20AT%2C%20AU';
@@ -117,7 +117,6 @@ export default class card extends React.Component {
 
                 let candidateEl = <Candidate key={candidate.key} candidate={candidate}></Candidate>
 
-
                 if(candidate.standingForMayor){
                     mayorCandidates.push(candidateEl);
                 } else if(candidate.standingForCouncillor){
@@ -128,7 +127,7 @@ export default class card extends React.Component {
 
         let mayor = <div className="candidate-section card-3">
             <div className="candidate-section-title">
-                {'Score for Mayor of Auckland'.toUpperCase()}
+                {'Scores for Mayor of Auckland'.toUpperCase()}
                 </div>
             <div className="candidate-section-inner">
                 {mayorCandidates}
@@ -137,7 +136,7 @@ export default class card extends React.Component {
 
         let councillor = <div className="candidate-section card-3">
             <div className="candidate-section-title">
-                {('Score for Councillor (' + this.props.ward + ')').toUpperCase()}
+                {('Scores for Councillor (' + this.props.ward + ')').toUpperCase()}
             </div>
             <div className="candidate-section-inner">
                 {councillorCandidates}

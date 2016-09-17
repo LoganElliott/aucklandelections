@@ -1,16 +1,4 @@
-$mayor-colour: #A1DCFF;
-$councillor-colour: #f4a38d;
-$local-board-colour: #FFD38F;
-
-$mayor-breakdown-colour: #ecf8ff;
-$councillor-breakdown-colour: #fdede8;
-$local-board-breakdown-colour: #fff6e9;
-
-$grey-text: #B1B1B1;
-$light-dark-text: rgba(77, 86, 93, .77);
-$dark-text: rgb(93,93,93);
-
-$small: 1000px;
+@import '../../container/global';
 
 .candidate-main {
   display: flex;
@@ -18,7 +6,7 @@ $small: 1000px;
   justify-content: center;
 }
 
-.councillor {
+.candidate {
   &-card {
     display: flex;
     margin: 10px;
@@ -139,16 +127,16 @@ $small: 1000px;
   }
 }
 
-.councillor-questions {
+.candidate-questions {
   color: snow;
 }
 
-.councillor-questions__question {
+.candidate-questions__question {
   display: flex;
   align-items: center;
 }
 
-.councillor-questions__breakdown-value {
+.candidate-questions__breakdown-value {
   display: flex;
   border-radius: 50%;
   width: 30px;
@@ -161,18 +149,18 @@ $small: 1000px;
   margin-left: 5px;
 }
 
-.councillor-info-container {
+.candidate-info-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 
-.councillor-info-markers-consensus {
+.candidate-info-markers-consensus {
   width: 250px;
 }
 
-.councillor-info{
+.candidate-info{
 
   &-markers-consensus-line {
     border-style: solid;

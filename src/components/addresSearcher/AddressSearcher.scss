@@ -1,4 +1,4 @@
-$dark-text: rgb(93,93,93);
+@import '../../container/global';
 
 .local-board-input-and-button {
   text-align: center;
@@ -7,7 +7,7 @@ $dark-text: rgb(93,93,93);
 }
 
 .find-my-voting-area-button :first-child {
-    background-color: #67bdb0;
+    background-color: $button-colour;
 }
 
 .centre-textField {

@@ -37,7 +37,7 @@ export default class Candidate extends Component {
 
     render() {
         return (
-            <div key={this.props.candidate.key} className='councillor-card'>
+            <div key={this.props.candidate.key} className='candidate-card'>
                 <CandidateDetails candidate={this.props.candidate}
                                   expandedIds={this.state.expandedIds}
                                   handleShow={this.handleShow}

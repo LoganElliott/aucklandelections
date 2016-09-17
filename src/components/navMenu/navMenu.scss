@@ -1,0 +1,22 @@
+.nav {
+  &__items{
+    float: right;
+    text-align: center;
+
+    &-item {
+      padding: 0 10px 0 10px;
+      color: snow;
+      text-decoration: inherit;
+    }
+  }
+
+  &__gz-logo {
+    width: 141px;
+  }
+
+  @media screen and (max-width: 700px) {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

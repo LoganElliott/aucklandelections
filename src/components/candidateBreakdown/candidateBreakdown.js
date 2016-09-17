@@ -115,15 +115,15 @@ export default class CandidateBreakdown extends Component {
         if(candidate.standingForMayor){
             return 'candidate-breakdown-mayor';
         } else if(candidate.standingForCouncillor) {
-            return 'candidate-breakdown-councillor';
+            return 'candidate-breakdown-candidate';
         }
     };
 
     getCandidateColourClass (candidate) {
         if(candidate.standingForMayor){
-            return 'councillor-mayor';
+            return 'candidate-mayor';
         } else if(candidate.standingForCouncillor) {
-            return 'councillor-councillor';
+            return 'candidate-councillor';
         }
     };
 

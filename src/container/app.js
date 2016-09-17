@@ -4,7 +4,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Header from '../components/header/header';
 import AddressSearcher from '../components/addresSearcher/AddressSearcher';
-import Cards from '../components/cards/cards';
+import CandidateCards from '../components/candidateCards/candidateCards';
+import WhatWeAsked from '../components/WhatWeAsked/WhatWeAsked';
 import Footer from '../components/footer/footer';
 
 require('./app.scss');
@@ -32,17 +33,10 @@ export default class App extends Component {
         <MuiThemeProvider muiTheme={muiTheme}>
             <div>
                 <Header/>
-                <div className="headerBuffer"></div>
+                <div className="header-buffer"></div>
                 <AddressSearcher setWard={this.setWard}/>
-                <Cards ward={this.state.ward}/>
-                <div className="what-we-asked-container">
-                    <div className="what-we-asked">
-                        WHAT WE ASKED
-                    </div>
-                    <div className="what-we-asked-text">
-                        <div> We asked every council candidate the same 14 questions on Transport, Housing and the Environment. We gave them points based on how well they answered and how well they matched Generation Zero's vision for a liveable low-carbon Auckland.</div>
-                    </div>
-                </div>
+                <CandidateCards ward={this.state.ward}/>
+                <WhatWeAsked/>
                 <div style={{height: '160px',marginTop: '100px'}}></div>
                 <Footer/>
             </div>
