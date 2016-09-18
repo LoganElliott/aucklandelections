@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Header from '../components/header/header';
 import AddressSearcher from '../components/addresSearcher/AddressSearcher';
 import CandidateCards from '../components/candidateCards/candidateCards';
-import WhatWeAsked from '../components/WhatWeAsked/WhatWeAsked';
+import WhatWeAsked from '../components/whatWeAsked/whatWeAsked';
 import Footer from '../components/footer/footer';
 
 require('./app.scss');
