@@ -34,6 +34,12 @@
     font-weight: 900;
   }
 
+  &__local-board {
+    font-size: 25px;
+    font-weight: 500;
+    color: $dark-text;
+  }
+
   &__preamble {
     color: $dark-text;
     font-size: 20px;

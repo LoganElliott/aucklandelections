@@ -18,14 +18,17 @@ export default class App extends Component {
     constructor(props, context){
         super(props, context);
         this.state = {
-            ward: ''
+            ward: '',
+            localBoard: ''
         };
-        this.setWard = this.setWard.bind(this);
+        this.setWardAndLocalBoard = this.setWardAndLocalBoard.bind(this);
     }
 
-    setWard(ward){
-        console.log(ward);
-        this.setState({ward:ward});
+    setWardAndLocalBoard(ward, localBoard){
+        this.setState({
+            ward:ward,
+            localBoard: localBoard
+        });
     }
 
   render() {
@@ -34,7 +37,7 @@ export default class App extends Component {
             <div>
                 <Header/>
                 <div className="header-buffer"></div>
-                <AddressSearcher setWard={this.setWard}/>
+                <AddressSearcher setWardAndLocalBoard={this.setWardAndLocalBoard}/>
                 <CandidateCards ward={this.state.ward}/>
                 <WhatWeAsked/>
                 <div style={{height: '160px',marginTop: '100px'}}></div>

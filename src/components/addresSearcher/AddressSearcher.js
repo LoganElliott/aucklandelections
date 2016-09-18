@@ -10,7 +10,8 @@ injectTapEventPlugin();
 
 require('./AddressSearcher.scss');
 
-const koordinatesLayerId = 1349;
+const koordinatesLayerIdForWard = 1349;
+const koordinatesLayerIdForLocalBoard = 1513;
 const koordinatesApiKey = '979e84540aac481685f1e9ea5331cc35';
 const googleApiKey = 'AIzaSyAE7vD-Xl1RjQ_PPzinv2omvZy1HqiHI3c';
 const componentsFiltering = 'components=country:NZ';
@@ -20,10 +21,11 @@ export default class AddressSearcher extends React.Component {
         super(props, context);
 
         this.state = {
-            ward: "",
-            value: "",
-            searching: false,
+            ward: '',
+            localBoard: '',
+            value: '',
             addressError: '',
+            searching: false,
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -51,6 +53,7 @@ export default class AddressSearcher extends React.Component {
         this.setState({
             searching: false,
             ward: '',
+            localBoard: '',
             addressError: 'Not Valid Auckland Address'
         });
         this.props.setWard('');
@@ -63,33 +66,52 @@ export default class AddressSearcher extends React.Component {
             .then((response) => {
                 let lat = response.data.results[0].geometry.location.lat;
                 let lng = response.data.results[0].geometry.location.lng;
+                let ward = this.getWardFromLatLng(lat, lng);
+                let localBoard = this.getLocalBoardFromLatLng(lat, lng);
 
-                this.getWardFromLatLng(lat,lng);
+                Promise.all([ward, localBoard]).then(values => {
+                    const ward = values[0];
+                    const localBoard = values[1];
+
+                    this.setState({
+                        ward: ward,
+                        localBoard: localBoard,
+                        searching: false,
+                        addressError: ''
+                    });
+
+                    this.props.setWardAndLocalBoard(ward,localBoard);
+                });
             })
             .catch((err) => this.onAddressSearchError(err));
     }
 
     getWardFromLatLng(lat, lng){
-        axios.get('https://api.koordinates.com/api/vectorQuery.json/?key=' + koordinatesApiKey + '&layer=' + koordinatesLayerId + '&x=' + lng + '&y=' + lat)
-            .then((koordinatesResponse) => {
-                let ward = koordinatesResponse.data.vectorQuery.layers[koordinatesLayerId].features[0].properties.WARD_NAME;
-                if(ward === 'Te Irirangi Ward'){
-                    ward = 'Howick Ward';
-                }
-                ward = ward.replace(' Ward', '');
-                this.setState({
-                    ward: ward,
-                    searching: false,
-                    addressError: ''
-                });
-                this.props.setWard(ward);
+        return new Promise((resolve, reject) =>
+            axios.get('https://api.koordinates.com/api/vectorQuery.json/?key=' + koordinatesApiKey + '&layer=' + koordinatesLayerIdForWard + '&x=' + lng + '&y=' + lat)
+                .then((koordinatesResponse) => {
+                    let ward = koordinatesResponse.data.vectorQuery.layers[koordinatesLayerIdForWard].features[0].properties.WARD_NAME;
+                    if(ward === 'Te Irirangi Ward'){
+                        ward = 'Howick Ward';
+                    }
+                    resolve(ward.replace(' Ward', ''));
+                })
+                .catch((err) => this.onAddressSearchError(err))
+        )
+    }
 
+    getLocalBoardFromLatLng(lat, lng){
+        return new Promise((resolve, reject) =>
+        axios.get('https://api.koordinates.com/api/vectorQuery.json/?key=' + koordinatesApiKey + '&layer=' + koordinatesLayerIdForLocalBoard + '&x=' + lng + '&y=' + lat)
+            .then((koordinatesResponse) => {
+                let localBoard = koordinatesResponse.data.vectorQuery.layers[koordinatesLayerIdForLocalBoard].features[0].properties.CB_NAME;
+                resolve(localBoard.replace(' Local Board Area', ''));
             })
-            .catch((err) => this.onAddressSearchError(err));
+            .catch((err) => this.onAddressSearchError(err))
+        )
     }
 
     render() {
-
         const textFieldStyle = {
             margin: 12
         };
@@ -153,7 +175,10 @@ export default class AddressSearcher extends React.Component {
                 Your voting area is the
             </div>
             <div className="voting-area__ward">
-                {this.state.ward.toUpperCase()} WARD
+                {this.state.ward.toUpperCase() + 'Ward'.toUpperCase()}
+            </div>
+            <div className="voting-area__local-board">
+                {'& ' + this.state.localBoard.toUpperCase() + 'Local Board Area'.toUpperCase()}
             </div>
             <div>
                 <img src={wardImagesPath + this.state.ward.replace(/\s/g,'') + '.png'}></img>
