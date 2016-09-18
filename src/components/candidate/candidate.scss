@@ -1,0 +1,13 @@
+@import '../../container/global';
+
+.candidate-card {
+  display: flex;
+  margin: 10px;
+  position: relative;
+
+  @media screen and (max-width: $small) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}

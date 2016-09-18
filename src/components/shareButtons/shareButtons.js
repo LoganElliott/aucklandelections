@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import {
     ShareButtons,
     generateShareIcon,
@@ -23,10 +23,9 @@ const PinterestIcon = generateShareIcon('pinterest');
 const shareUrl = 'http://aucklandelections.nz';
 const title = 'Auckland Elections';
 
-export default class SocailMediaShareButtons extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-
+export default class SocialMediaShareButtons extends React.Component {
+    constructor(context) {
+        super( context);
     }
 
 
@@ -87,5 +86,4 @@ export default class SocailMediaShareButtons extends React.Component {
             </div>
         );
     }
-
 }

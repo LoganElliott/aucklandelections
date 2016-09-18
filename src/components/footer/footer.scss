@@ -1,4 +1,6 @@
-.footer-container {
+@import '../../container/global';
+
+.footer {
   color: snow;
   position: absolute;
   right: 0;
@@ -7,21 +9,12 @@
   padding: 17px;
   display: inline-block;
   align-items: center;
-  background-color: #747473;
+  background-color: $footer-colour;
   line-height: 43px;
 
-}
-.nav-container-footer {
-  width: 100%;
-  @media screen and (max-width: 700px) {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
+  &__authorised-by {
+    color: $grey-text;
+    font-size: 12px;
+    text-align: center;
   }
-}
-
-.authorised-by {
-  color: #b1b1ad;
-  font-size: 12px;
-  text-align: center;
 }

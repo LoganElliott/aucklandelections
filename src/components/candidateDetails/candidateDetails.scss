@@ -1,0 +1,128 @@
+@import '../../container/global';
+
+.candidate-details {
+  height: 620px;
+  width: 300px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+  &-image {
+    &__container {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    &__value {
+      border-radius: 50%;
+    }
+  }
+
+  &-grade-bubble {
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 75px;
+    background-image: linear-gradient(180deg, #747473, #747473);
+
+    &-value {
+      color: #fff;
+      font-size: 59px;
+      font-weight: 900;
+    }
+  }
+
+  &-info {
+    text-align: center;
+
+    &__name {
+      color: snow;
+      margin: 0;
+
+      &-first {
+        font-weight: 100;
+      }
+    }
+
+    &__ticket {
+      margin: 5px;
+      color: $dark-text;
+    }
+  }
+
+  &__markers-consensus {
+    &-line {
+      border-style: solid;
+      color: snow;
+    }
+
+    &-title {
+      color: snow;
+    }
+  }
+
+  &__category {
+    margin: 5px;
+    width: 60px;
+    height: 60px;
+
+    &-transport {
+      background-color: $transport;
+    }
+
+    &-housing {
+      background-color: $housing;
+    }
+
+    &-environment {
+      background-color: $environment;
+    }
+
+    &-competence {
+      background-color: $competence;
+    }
+  }
+
+  &__scores {
+    margin-top: 40px;
+
+    &-inner {
+      display: flex;
+      justify-content: center;
+
+      &-score {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+
+        &-value {
+          font-size: 28px;
+          font-weight: 400;
+          color: $light-dark-text;
+
+        }
+      }
+    }
+  }
+
+  &-breakdown-button {
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    position: absolute;
+    padding-bottom: 4px;
+  }
+}

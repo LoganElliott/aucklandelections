@@ -2,68 +2,72 @@ import React, { Component, PropTypes } from 'react';
 import ReactImageFallback from "react-image-fallback";
 import RaisedButton from 'material-ui/RaisedButton';
 
-const categories = ['transport', 'housing', 'environment', 'competence'];
+import {categories, iconImagesPath, candidateImagesPath} from '../../conf/conf';
+import {getCandidateColourClass, getCandidateBreakdownColourClass} from '../../util/util';
+
+require('./candidateDetails.scss');
 
 export default class CandidateDetails extends Component {
     constructor(props, context){
         super(props, context);
-
     }
 
-    getCandidateBreakdownColourClass (candidate) {
-        if(candidate.standingForMayor){
-            return 'candidate-breakdown-mayor-button';
-        } else if(candidate.standingForCouncillor) {
-            return 'candidate-breakdown-councillor-button';
-        }
-    };
-
     render() {
-        let candidateGrade = candidate => <div className="candidate-grade-bubble"><div className="candidate-grade">{candidate.overall}</div></div>;
+        let candidateGrade = candidate => <div className="candidate-details-grade-bubble">
+            <div className="candidate-details-grade-bubble-value">
+                {candidate.overall}
+            </div>
+        </div>;
 
-        let candidateImage = candidate => <div className='councillor-image__container'>
+        let candidateImage = candidate => <div className='candidate-details-image__container'>
             <ReactImageFallback
-                className='councillor-image__value'
+                className='candidate-details-image__value'
                 height={175}
                 width={175}
                 src={candidate.image}
-                fallbackImage='images/candidates/missing.jpg'>
+                fallbackImage={candidateImagesPath + 'missing.jpg'}>
             </ReactImageFallback>
             {candidateGrade(candidate)}
         </div>;
 
+        let candidateBasicInfo = candidate => <div>
+            <h1 className='candidate-details-info__name candidate-info__name-first'>{candidate.firstName}</h1>
+            <h1 className='candidate-details-info__name'>{candidate.lastName.toUpperCase()}</h1>
+            <h3 className='candidate-details-info__ticket'>{candidate.ticket}</h3>
+        </div>;
+
         let candidateScores = candidate =>
-            <div className="councillor-info__scores-container">
+            <div className="candidate-details__scores">
                 <div>
                     {categories.map(category =>
-                        <img key={candidate+category+'breakdown-images'} className='councillor-info__category'
-                             src={'images/icons/' + category.charAt(0).toUpperCase() + category.slice(1) + '-Icon.png'}
+                        <img key={candidate+category+'breakdown-images'} className='candidate-details__category'
+                             src={iconImagesPath + category.charAt(0).toUpperCase() + category.slice(1) + '-Icon.png'}
                         />
                     )}
                 </div>
-                <div className='councillor-info__scores'>
+                <div className='candidate-details__scores-inner'>
                     {categories.map(category =>
-                        <div key={candidate+category+'breakdown-scores'}
-                             className={'councillor-info__score councillor-info__category councillor-info__' + category}>
-                            <div className='councillor-info__score-value'>
+                        <div key={candidate+category+'score'}
+                             className={'candidate-details__scores-inner-score candidate-details__category candidate-details__category-' + category}>
+                            <div className='candidate-details__scores-inner-score-value'>
                                 {candidate[category]}
                             </div>
                         </div>)}
                 </div>
             </div>;
 
-        let candidateMarkersConsensus = candidate => <div className='councillor-info-markers-consensus'>
-            <hr className='councillor-info-markers-consensus-line'/>
-            <div className='councillor-info-markers-consensus-title'>
+        let candidateMarkersConsensus = candidate => <div className='candidate-details__markers-consensus'>
+            <hr className='candidate-details__markers-consensus-line'/>
+            <div className='candidate-details__markers-consensus-title'>
                 {'Marker\'s Consensus'}
                 <br/>
             </div>
             '{candidate.consensus}'
-            <hr className='councillor-info-markers-consensus-line'/>
+            <hr className='candidate-details__markers-consensus-line'/>
         </div>;
 
-        let candidateInfo = candidate => <div className='councillor-info councillor-info-container'>
-            <div className='councillor-info-markers-consensus-scores'>
+        let candidateInfoAndMarkersConsensus = candidate => <div className='candidate-details-info'>
+            <div>
                 {!this.props.expandedIds.some((val) => val === candidate.key)
                     ? candidateScores(candidate)
                     : candidateMarkersConsensus(candidate)
@@ -71,38 +75,27 @@ export default class CandidateDetails extends Component {
             </div>
         </div>;
 
-        let breakdownButton = (candidate) => <div className='councillor-score-breakdown-button'>
+        let breakdownButton = (candidate) => <div className='candidate-details-breakdown-button'>
             {!this.props.expandedIds.some((val) => val === candidate.key)
                 ?
                 <RaisedButton label='Show Score Breakdown'
-                              className={this.getCandidateBreakdownColourClass(candidate)}
+                              className={getCandidateBreakdownColourClass(candidate)}
                             disabled={!candidate.consensus}
                             onTouchTap={() => {this.props.handleShow(candidate.key);this.props.selectCategory(candidate.key, 'transport');}}
                 />
                 :
                 <RaisedButton label='Hide Score Breakdown'
-                              className={this.getCandidateBreakdownColourClass(candidate)}
+                              className={getCandidateBreakdownColourClass(candidate)}
                               onTouchTap={() => this.props.handleHide(candidate.key)}
                 />
             }
         </div>;
 
-        let cardColourClass;
-        if(this.props.candidate.standingForMayor){
-            cardColourClass = 'councillor-mayor';
-        } else if(this.props.candidate.standingForCouncillor){
-            cardColourClass = 'councillor-councillor';
-        }
-
         return (
-            <div className={'councillor-details ' + cardColourClass}>
+            <div className={'candidate-details ' + getCandidateColourClass(this.props.candidate)}>
                 {candidateImage(this.props.candidate)}
-                <div>
-                    <h1 className='councillor-info__name councillor-info__name-first'>{this.props.candidate.firstName}</h1>
-                    <h1 className='councillor-info__name'>{this.props.candidate.lastName.toUpperCase()}</h1>
-                    <h3 className='councillor-info__ticket'>{this.props.candidate.ticket}</h3>
-                </div>
-                {candidateInfo(this.props.candidate)}
+                {candidateBasicInfo(this.props.candidate)}
+                {candidateInfoAndMarkersConsensus(this.props.candidate)}
                 {breakdownButton(this.props.candidate)}
             </div>
         );

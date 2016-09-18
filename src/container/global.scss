@@ -1,0 +1,61 @@
+$grey-text: rgb(177,177,177);
+$footer-colour: rgb(116,116,115);
+$light-dark-text: rgba(77, 86, 93, .77);
+$dark-text: rgb(93,93,93);
+
+$button-colour: rgb(103,189,176);
+
+$mayor-colour: rgb(161,220,255);
+$councillor-colour: rgb(244,163,141);
+$local-board-colour: rgb(255,211,143);
+
+$mayor-breakdown-colour: rgb(236,248,255);
+$councillor-breakdown-colour: rgb(253,237,232);
+$local-board-breakdown-colour: rgb(255,246,233);
+
+$transport: rgb(254,229,193);
+$housing: rgb(250,218,226);
+$environment: rgb(190,223,217);
+$competence: rgb(213,237,252);
+
+$small: 1000px;
+
+.candidate {
+  &-mayor {
+    background-color: $mayor-colour;
+  }
+
+  &-councillor {
+    background-color: $councillor-colour;
+  }
+
+  &-local-board {
+    background-color: $local-board-colour;
+  }
+
+  &-breakdown {
+    &-mayor {
+      background-color: $mayor-breakdown-colour;
+
+      &-button :first-child {
+        background-color: $mayor-breakdown-colour;
+      }
+    }
+
+    &-councillor {
+      background-color: $councillor-breakdown-colour;
+
+      &-button :first-child {
+        background-color: $councillor-breakdown-colour;
+      }
+    }
+
+    &-local-board {
+      background-color: $local-board-breakdown-colour;
+
+      &-button :first-child {
+        background-color: $local-board-breakdown-colour;
+      }
+    }
+  }
+}

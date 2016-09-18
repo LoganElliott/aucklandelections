@@ -4,6 +4,8 @@ import TextField from 'material-ui/TextField';
 import CircularProgress from 'material-ui/CircularProgress';
 import axios from 'axios';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {wardImagesPath} from '../../conf/conf';
+
 injectTapEventPlugin();
 
 require('./AddressSearcher.scss');
@@ -154,7 +156,7 @@ export default class AddressSearcher extends React.Component {
                 {this.state.ward.toUpperCase()} WARD
             </div>
             <div>
-                <img src={"/images/wardIcons/" + this.state.ward.replace(/\s/g,'') + '.png'}></img>
+                <img src={wardImagesPath + this.state.ward.replace(/\s/g,'') + '.png'}></img>
             </div>
         </div>;
 
