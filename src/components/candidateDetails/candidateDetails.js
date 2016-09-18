@@ -41,7 +41,7 @@ export default class CandidateDetails extends Component {
                 <div>
                     {categories.map(category =>
                         <img key={candidate+category+'breakdown-images'} className='candidate-details__category'
-                             src={iconImagesPath + category.charAt(0).toUpperCase() + category.slice(1) + '-Icon.png'}
+                             src={iconImagesPath + (candidate.standingForLocalBoard && category === 'competence' ? 'Cycling' : (category.charAt(0).toUpperCase() + category.slice(1))) + '-Icon.png'}
                         />
                     )}
                 </div>
@@ -50,39 +50,45 @@ export default class CandidateDetails extends Component {
                         <div key={candidate+category+'score'}
                              className={'candidate-details__scores-inner-score candidate-details__category candidate-details__category-' + category}>
                             <div className='candidate-details__scores-inner-score-value'>
-                                {candidate[category]}
+                                {candidate.standingForLocalBoard && category === 'competence' ? candidate['cycling'] : candidate[category]}
                             </div>
                         </div>)}
                 </div>
             </div>;
 
         let candidateMarkersConsensus = candidate => <div className='candidate-details__markers-consensus'>
-            <hr className='candidate-details__markers-consensus-line'/>
             <div className='candidate-details__markers-consensus-title'>
-                {'Marker\'s Consensus'}
+                {'Marker\'s Consensus'.toUpperCase()}
                 <br/>
             </div>
-            '{candidate.consensus}'
-            <hr className='candidate-details__markers-consensus-line'/>
+            <div className='candidate-details__markers-consensus-text'>
+                '{candidate.consensus}'
+            </div>
         </div>;
 
         let candidateInfoAndMarkersConsensus = candidate => <div className='candidate-details-info'>
-            <div>
+            <div className="candidate-details__scores-marker-container">
+                <hr className='candidate-details__line'/>
                 {!this.props.expandedIds.some((val) => val === candidate.key)
                     ? candidateScores(candidate)
                     : candidateMarkersConsensus(candidate)
                 }
+                <hr className='candidate-details__line'/>
             </div>
         </div>;
 
         let breakdownButton = (candidate) => <div className='candidate-details-breakdown-button'>
             {!this.props.expandedIds.some((val) => val === candidate.key)
                 ?
-                <RaisedButton label='Show Score Breakdown'
+                candidate.standingForLocalBoard
+                    ?
+                    ''
+                    :
+                    <RaisedButton label='Show Score Breakdown'
                               className={getCandidateBreakdownColourClass(candidate)}
                             disabled={!candidate.consensus}
                             onTouchTap={() => {this.props.handleShow(candidate.key);this.props.selectCategory(candidate.key, 'transport');}}
-                />
+                    />
                 :
                 <RaisedButton label='Hide Score Breakdown'
                               className={getCandidateBreakdownColourClass(candidate)}

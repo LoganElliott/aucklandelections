@@ -12,7 +12,7 @@ export function getCandidateBreakdownColourClass (candidate) {
     if(candidate.standingForMayor){
         return 'candidate-breakdown-mayor-button';
     } else if(candidate.standingForCouncillor) {
-        return 'candidate-breakdown-candidate-button';
+        return 'candidate-breakdown-councillor-button';
     } else if(candidate.standingForLocalBoard) {
         return 'candidate-breakdown-local-board';
     }

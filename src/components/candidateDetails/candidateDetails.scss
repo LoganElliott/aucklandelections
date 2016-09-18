@@ -6,7 +6,6 @@
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   text-align: center;
   position: relative;
 
@@ -61,14 +60,26 @@
   }
 
   &__markers-consensus {
-    &-line {
-      border-style: solid;
-      color: snow;
-    }
 
     &-title {
       color: snow;
+      font-size: 20px;
+      margin: 8px;
     }
+
+    &-text {
+      font-style: italic;
+    }
+  }
+
+  &__line {
+    border-style: solid;
+    color: snow;
+  }
+
+  &__scores-marker-container {
+    width: 95%;
+    margin: auto;
   }
 
   &__category {
@@ -95,6 +106,7 @@
 
   &__scores {
     margin-top: 40px;
+    margin-bottom: 40px;
 
     &-inner {
       display: flex;

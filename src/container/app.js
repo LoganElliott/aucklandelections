@@ -38,7 +38,7 @@ export default class App extends Component {
                 <Header/>
                 <div className="header-buffer"></div>
                 <AddressSearcher setWardAndLocalBoard={this.setWardAndLocalBoard}/>
-                <CandidateCards ward={this.state.ward}/>
+                <CandidateCards ward={this.state.ward} localBoard={this.state.localBoard}/>
                 <WhatWeAsked/>
                 <div style={{height: '160px',marginTop: '100px'}}></div>
                 <Footer/>

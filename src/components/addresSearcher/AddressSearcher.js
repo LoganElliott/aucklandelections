@@ -56,7 +56,7 @@ export default class AddressSearcher extends React.Component {
             localBoard: '',
             addressError: 'Not Valid Auckland Address'
         });
-        this.props.setWard('');
+        this.props.setWardAndLocalBoard('', '');
         console.debug(err);
     }
 
@@ -105,6 +105,9 @@ export default class AddressSearcher extends React.Component {
         axios.get('https://api.koordinates.com/api/vectorQuery.json/?key=' + koordinatesApiKey + '&layer=' + koordinatesLayerIdForLocalBoard + '&x=' + lng + '&y=' + lat)
             .then((koordinatesResponse) => {
                 let localBoard = koordinatesResponse.data.vectorQuery.layers[koordinatesLayerIdForLocalBoard].features[0].properties.CB_NAME;
+                if(localBoard === 'Te Irirangi Local Board Area'){
+                    localBoard = 'Howick Local Board Area';
+                }
                 resolve(localBoard.replace(' Local Board Area', ''));
             })
             .catch((err) => this.onAddressSearchError(err))
@@ -175,10 +178,10 @@ export default class AddressSearcher extends React.Component {
                 Your voting area is the
             </div>
             <div className="voting-area__ward">
-                {this.state.ward.toUpperCase() + 'Ward'.toUpperCase()}
+                {this.state.ward.toUpperCase() + ' Ward'.toUpperCase()}
             </div>
             <div className="voting-area__local-board">
-                {'& ' + this.state.localBoard.toUpperCase() + 'Local Board Area'.toUpperCase()}
+                {'& ' + this.state.localBoard.toUpperCase() + ' Local Board Area'.toUpperCase()}
             </div>
             <div>
                 <img src={wardImagesPath + this.state.ward.replace(/\s/g,'') + '.png'}></img>
