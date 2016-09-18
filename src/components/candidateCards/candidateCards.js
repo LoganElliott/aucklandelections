@@ -9,9 +9,20 @@ import {candidateImagesPath} from '../../conf/conf';
 
 require('./candidateCards.scss');
 
-const googleSpreadSheetKey = '1qK6ph0ZU1dGsTjkeIiPLjVRpyRQKo_ItDrnqMZmRjUU';
-const query = 'SELECT%20B%2C%20D%2C%20F%2C%20H%2C%20J%2C%20L%2C%20N%2C%20P%2C%20R%2C%20T%2C%20V%2C%20X%2C%20Z%20%2CAB%20%2C%20AD%2C%20AF%2C%20AG%2C%20AI%2C%20AN%2C%20AO%2C%20AP%2C%20AQ%2C%20AR%2C%20AS%2C%20AT%2C%20AU';
-const dataUrl = 'https://spreadsheets.google.com/a/google.com/tq?key=' + googleSpreadSheetKey + '&tq=' + query + '&tqx=responseHandler:getCandidates';
+const googleSpreadSheetUrl = 'https://spreadsheets.google.com/a/google.com/tq?key=';
+const commaSpace = '%2C%20';
+
+const mayorAndCouncillorsColumns = ['B','D','F','H','J','L','N','P','R','T','V','X','Z', 'AB','AD','AF','AG','AI','AN','AO','AP','AQ','AR','AS','AT','AU'];
+const mayorAndCouncillorsGoogleSpreadSheetKey = '1qK6ph0ZU1dGsTjkeIiPLjVRpyRQKo_ItDrnqMZmRjUU';
+const mayorAndCouncillorsQuery = mayorAndCouncillorsColumns.slice(1).reduce( (pre, cur) => pre + commaSpace + cur,'SELECT%20B');
+const mayorAndCouncillorsJsonpCallback = 'getMayorAndCouncillors';
+const mayorAndCouncillorsDataUrl = googleSpreadSheetUrl + mayorAndCouncillorsGoogleSpreadSheetKey + '&tq=' + mayorAndCouncillorsQuery + '&tqx=responseHandler:' + mayorAndCouncillorsJsonpCallback;
+
+const localBoardsColumns = ['B','C','D','E','S','T','U','V','W'];
+const localBoardsGoogleSpreadSheetKey = '1u51qnVBZtF_NdCdcsFHO-i5rbpu54NagFU6TgMpmg4c';
+const localBoardsQuery = localBoardsColumns.slice(1).reduce( (pre, cur) => pre + commaSpace + cur,'SELECT%20B');
+const localBoardsJsonpCallback = 'getLocalBoards';
+const localBoardsDataUrl = googleSpreadSheetUrl + localBoardsGoogleSpreadSheetKey + '&tq=' + localBoardsQuery + '&tqx=responseHandler:' + localBoardsJsonpCallback;
 
 export default class card extends React.Component {
     constructor(props, context) {
@@ -23,29 +34,35 @@ export default class card extends React.Component {
     }
 
     componentDidMount () {
-        this.getCandidates();
+        this.getCandidates(mayorAndCouncillorsDataUrl,mayorAndCouncillorsJsonpCallback, true);
+        this.getCandidates(localBoardsDataUrl,localBoardsJsonpCallback, false);
     }
 
-    getCandidates() {
-        jsonp(dataUrl,{"name": 'getCandidates'}, (err,data) => this.jsonpCallback(err,data));
+    getCandidates(dataUrl, callback, isMayorOrCouncillor) {
+        jsonp(dataUrl,{"name": callback}, (err,data) => this.jsonpCallback(err,data, isMayorOrCouncillor));
     }
 
-    jsonpCallback(err,data) {
+    jsonpCallback(err,data, isMayorOrCouncillor) {
         if(!err){
             let rows = data.table.rows;
             let cads = [];
             map(rows, (row) => {
-                let candidate = this.createCandidate(row);
+                let candidate;
+                if(isMayorOrCouncillor){
+                    candidate = this.createMayorOrCouncillorCandidate(row);
+                } else {
+                    candidate = this.createLocalBoardCandidate(row);
+                }
 
                 cads.push(candidate);
             });
-            this.setState({candidates: cads});
+            this.setState({candidates: this.state.candidates.concat(cads)});
         } else {
             console.debug(err);
         }
     }
 
-    createCandidate(val){
+    createMayorOrCouncillorCandidate(val){
         let scores = [];
         let transport = [];
         let housing = [];
@@ -91,6 +108,26 @@ export default class card extends React.Component {
             'ticket': val.c[23] ? val.c[23].v : '',
             'standingForMayor': val.c[24] ? val.c[24].v : '',
             'standingForCouncillor': val.c[25] ? val.c[25].v : '',
+        };
+    }
+
+    createLocalBoardCandidate(val){
+        let firstName = val.c[0].v.trim();
+        let lastName = val.c[1].v.trim();
+        let image = candidateImagesPath + firstName + '-' +lastName + '.png';
+
+        return {
+            'key': firstName+lastName,
+            'firstName' : firstName,
+            'lastName' : lastName,
+            'image': image,
+            'localBoard': val.c[2] ? val.c[2].v : '',
+            'subdivision': val.c[3] ? val.c[3].v : '',
+            'publicTransport': val.c[4] ? val.c[4].v : '?',
+            'housing': val.c[5] ? val.c[5].v : '?',
+            'cycling': val.c[6] ? val.c[6].v : '?',
+            'climateChange': val.c[7] ? val.c[7].v : '?',
+            'overallValue': val.c[8] ? val.c[8].v : '?',
         };
     }
 
