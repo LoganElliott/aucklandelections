@@ -10,8 +10,8 @@ export default class CandidateBreakdown extends Component {
         super(props, context);
     }
 
-    candidateBreakdownOpen (candidate) {
-        return this.props.expandedIds.some((val) => val === candidate.key);
+    isCandidateBreakdownOpen (candidate, expandedIds) {
+        return expandedIds.some((val) => val === candidate.key);
     }
 
     render() {
@@ -77,7 +77,7 @@ export default class CandidateBreakdown extends Component {
 
 
         let candidateBreakdown = candidate => {
-            if (this.candidateBreakdownOpen(candidate)) {
+            if (this.isCandidateBreakdownOpen(candidate, this.props.expandedIds)) {
                 return (
                     <div className={'candidate-breakdown ' + getCandidateColourClass(candidate)}>
                         <div className="candidate-breakdown__icons">
