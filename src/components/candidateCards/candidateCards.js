@@ -211,9 +211,9 @@ export default class card extends React.Component {
         </div>;
 
         return <div className='candidates'>
-            {this.props.localBoard && localBoardCandidates.length > 0 ? localBoard: ''}
             {this.props.ward ? councillors : ''}
             {this.state.candidates.length > 0 ? mayor : ''}
+            {this.props.localBoard && localBoardCandidates.length > 0 ? localBoard: ''}
             {this.state.candidates.length === 0 ? <CircularProgress mode="indeterminate"/> : '' }
             </div>
     }

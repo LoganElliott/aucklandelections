@@ -34,7 +34,12 @@ export default class AddressSearcher extends React.Component {
     }
 
     componentWillMount(){
-        let wardAndLocalBoard = this.getWardAndLocalBoardFromQuery();
+        let search = window.location.search;
+        if(!search){
+            return
+        }
+
+        let wardAndLocalBoard = this.getWardAndLocalBoardFromQuery(search);
         let ward = wardAndLocalBoard.ward;
         let localBoard = wardAndLocalBoard.localBoard;
         if(ward){
@@ -46,8 +51,9 @@ export default class AddressSearcher extends React.Component {
         }
     }
 
-    getWardAndLocalBoardFromQuery(){
-        let search = window.location.search.split('?')[1].split('&');
+    getWardAndLocalBoardFromQuery(val){
+
+        let search = val.split('?')[1].split('&');
 
         let ward = '';
         let localBoard ='';
