@@ -1,3 +1,5 @@
+Travis Build Status: ![Build Status](https://travis-ci.org/LoganElliott/aucklandelections.svg?branch=master)
+
 # Auckland Elections
 
 A website that pulls [Generation Zero](http://wwww.generationzero.org) Auckland Elections candidate score data and displays each candidate as a card
