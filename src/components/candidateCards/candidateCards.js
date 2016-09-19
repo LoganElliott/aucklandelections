@@ -18,7 +18,7 @@ const mayorAndCouncillorsQuery = mayorAndCouncillorsColumns.slice(1).reduce( (pr
 const mayorAndCouncillorsJsonpCallback = 'getMayorAndCouncillors';
 const mayorAndCouncillorsDataUrl = googleSpreadSheetUrl + mayorAndCouncillorsGoogleSpreadSheetKey + '&tq=' + mayorAndCouncillorsQuery + '&tqx=responseHandler:' + mayorAndCouncillorsJsonpCallback;
 
-const localBoardsColumns = ['B','C','D','E','S','T','U','V','W'];
+const localBoardsColumns = ['B','C','D','E','R','S','T','U','V','W'];
 const localBoardsGoogleSpreadSheetKey = '1u51qnVBZtF_NdCdcsFHO-i5rbpu54NagFU6TgMpmg4c';
 const localBoardsQuery = localBoardsColumns.slice(1).reduce( (pre, cur) => pre + commaSpace + cur,'SELECT%20B');
 const localBoardsJsonpCallback = 'getLocalBoards';
@@ -34,32 +34,62 @@ export default class card extends React.Component {
     }
 
     componentDidMount () {
-        this.getCandidates(mayorAndCouncillorsDataUrl,mayorAndCouncillorsJsonpCallback, true);
-        this.getCandidates(localBoardsDataUrl,localBoardsJsonpCallback, false);
+        this.getCandidates();
     }
 
-    getCandidates(dataUrl, callback, isMayorOrCouncillor) {
-        jsonp(dataUrl,{"name": callback}, (err,data) => this.jsonpCallback(err,data, isMayorOrCouncillor));
+    getCandidates(){
+        let mayorAndCouncillorCandidates = this.getCandidatesOfType(mayorAndCouncillorsDataUrl,mayorAndCouncillorsJsonpCallback, true);
+        let localBoardCandidates = this.getCandidatesOfType(localBoardsDataUrl,localBoardsJsonpCallback, false);
+        Promise.all([mayorAndCouncillorCandidates,localBoardCandidates])
+            .then(values => {
+                let combinedCandidates = values[0].concat(values[1]);
+
+                let sortedCandidates = this.sortCandidates(combinedCandidates);
+                this.setState({candidates: sortedCandidates});
+            })
+            .catch(err => console.debug(err));
+    }
+
+    sortCandidates (candidates) {
+        return candidates.sort((a, b) => {
+            if(b.overallValue === a.overallValue){
+                return (b.firstName+b.lastName).toUpperCase() < (a.firstName+a.lastName).toUpperCase()
+            } else {
+                return b.overallValue - a.overallValue;
+            }
+        })
+    };
+
+    getCandidatesOfType(dataUrl, callback, isMayorOrCouncillor) {
+        return new Promise((resolve, reject) => {
+            jsonp(dataUrl, {"name": callback}, (err, data) => {
+                this.jsonpCallback(err, data, isMayorOrCouncillor)
+                    .then(value => resolve(value))
+                    .catch(err => reject(err));
+            });
+        });
     }
 
     jsonpCallback(err,data, isMayorOrCouncillor) {
-        if(!err){
-            let rows = data.table.rows;
-            let cads = [];
-            map(rows, (row) => {
-                let candidate;
-                if(isMayorOrCouncillor){
-                    candidate = this.createMayorOrCouncillorCandidate(row);
-                } else {
-                    candidate = this.createLocalBoardCandidate(row);
-                }
+        return new Promise((resolve, reject) => {
+            if(!err){
+                let rows = data.table.rows;
+                let newCandidates = [];
+                map(rows, (row) => {
+                    let candidate;
+                    if(isMayorOrCouncillor){
+                        candidate = this.createMayorOrCouncillorCandidate(row);
+                    } else {
+                        candidate = this.createLocalBoardCandidate(row);
+                    }
 
-                cads.push(candidate);
-            });
-            this.setState({candidates: this.state.candidates.concat(cads)});
-        } else {
-            console.debug(err);
-        }
+                    newCandidates.push(candidate);
+                });
+                resolve(newCandidates)
+            } else {
+                reject(err);
+            }
+        })
     }
 
     createMayorOrCouncillorCandidate(val){
@@ -123,11 +153,12 @@ export default class card extends React.Component {
             'image': image,
             'standingForLocalBoard': val.c[2] ? val.c[2].v : '',
             'subdivision': val.c[3] ? val.c[3].v : '',
-            'transport': val.c[4] ? val.c[4].v : '?',
-            'housing': val.c[5] ? val.c[5].v : '?',
-            'cycling': val.c[6]? val.c[6].v : '?',
-            'environment': val.c[7] ? val.c[7].v : '?',
-            'overall': val.c[8] && val.c[8].v ? val.c[8].v : '?',
+            'overallValue': val.c[4] ? val.c[4].v : '?',
+            'transport': val.c[5] ? val.c[5].v : '?',
+            'housing': val.c[6] ? val.c[6].v : '?',
+            'cycling': val.c[7]? val.c[7].v : '?',
+            'environment': val.c[8] ? val.c[8].v : '?',
+            'overall': val.c[9] && val.c[9].v ? val.c[9].v : '?',
         };
     }
 
@@ -136,17 +167,7 @@ export default class card extends React.Component {
         let councillorCandidates = [];
         let localBoardCandidates = [];
 
-        let sortCandidates = () => {
-            return this.state.candidates.sort((a, b) => {
-                if(b.overallValue === a.overallValue){
-                    return (b.firstName+b.lastName).toUpperCase() < (a.firstName+a.lastName).toUpperCase()
-                } else {
-                    return b.overallValue - a.overallValue;
-                }
-            })
-        };
-
-        sortCandidates().map(candidate => {
+        this.state.candidates.map(candidate => {
             if(candidate.standingForMayor || (candidate.standingForCouncillor && (this.props.ward == candidate.standingForCouncillor)) || (candidate.standingForLocalBoard && (this.props.localBoard == candidate.standingForLocalBoard))) {
 
                 let candidateEl = <Candidate key={candidate.key} candidate={candidate}></Candidate>
@@ -189,9 +210,9 @@ export default class card extends React.Component {
         </div>;
 
         return <div className='candidates'>
-            {this.props.localBoard && localBoardCandidates.length > 0 ? localBoard: ''}
             {this.props.ward ? councillors : ''}
             {this.state.candidates.length > 0 ? mayor : ''}
+            {this.props.localBoard && localBoardCandidates.length > 0 ? localBoard: ''}
             {this.state.candidates.length === 0 ? <CircularProgress mode="indeterminate"/> : '' }
             </div>
     }
