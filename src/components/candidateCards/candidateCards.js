@@ -45,7 +45,6 @@ export default class card extends React.Component {
                 let combinedCandidates = values[0].concat(values[1]);
 
                 let sortedCandidates = this.sortCandidates(combinedCandidates);
-                console.debug(sortedCandidates);
                 this.setState({candidates: sortedCandidates});
             })
             .catch(err => console.debug(err));
