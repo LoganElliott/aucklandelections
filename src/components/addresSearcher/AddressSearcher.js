@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import CircularProgress from 'material-ui/CircularProgress';
 import axios from 'axios';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {wardImagesPath} from '../../conf/conf';
+import {wardImagesPath, wards, localBoards} from '../../conf/conf';
 
 injectTapEventPlugin();
 
@@ -31,6 +31,37 @@ export default class AddressSearcher extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleEnter = this.handleEnter.bind(this);
+    }
+
+    componentWillMount(){
+        let wardAndLocalBoard = this.getWardAndLocalBoardFromQuery();
+        let ward = wardAndLocalBoard.ward;
+        let localBoard = wardAndLocalBoard.localBoard;
+        if(ward){
+            this.props.setWardAndLocalBoard(ward, localBoard);
+            this.setState({
+                ward: ward,
+                localBoard: localBoard
+            });
+        }
+    }
+
+    getWardAndLocalBoardFromQuery(){
+        let search = window.location.search.split('?')[1].split('&');
+
+        let ward = '';
+        let localBoard ='';
+        search.map(queries => {
+            let wardAndLocalBoard = queries.split('=');
+            if(wardAndLocalBoard[0] === 'ward'){
+                ward = decodeURIComponent(wardAndLocalBoard[1]);
+            } else if(wardAndLocalBoard[0] === 'localBoard'){
+                localBoard = decodeURIComponent(wardAndLocalBoard[1]);
+            }
+        });
+        ward = wards.some(val => ward === val) ? ward : '';
+        localBoard = localBoards.some(val => localBoard === val) ? localBoard : '';
+        return {'ward': ward, 'localBoard': localBoard}
     }
 
     handleChange(event) {
@@ -181,7 +212,7 @@ export default class AddressSearcher extends React.Component {
                 {this.state.ward.toUpperCase() + ' Ward'.toUpperCase()}
             </div>
             <div className="voting-area__local-board">
-                {'& ' + this.state.localBoard.toUpperCase() + ' Local Board Area'.toUpperCase()}
+                {this.state.localBoard ? '& ' + this.state.localBoard.toUpperCase() + ' Local Board Area'.toUpperCase(): ''}
             </div>
             <div>
                 <img src={wardImagesPath + this.state.ward.replace(/\s/g,'') + '.png'}></img>

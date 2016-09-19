@@ -9,6 +9,8 @@ export const candidateImagesPath = imagesPath + 'candidates/';
 export const iconImagesPath = imagesPath + 'icons/';
 export const wardImagesPath =  imagesPath + 'wardIcons/';
 
+export const wards = ['Albany','Albert-Eden-Roskill','Franklin','Manukau','Manurewa-Papakura','Maungakiekie-Tamaki','North Shore','Orakei','Rodney','Howick','Waitakere','Waitemata and Gulf','Whau'];
+export const localBoards = ['Albert-Eden','Devonport-Takapuna','Franklin','Great Barrier','Henderson-Massey','Hibiscus and Bays','Kaipatiki','Mangere-Otahuhu','Manurewa','Maungakiekie-Tamaki','Orakei','Otara-Papatoetoe','Papakura','Puketapapa','Rodney','Howick','Upper Harbour','Waiheke','Waitakere Ranges','Waitemata','Whau'];
 export const categories = ['transport', 'housing', 'environment', 'competence'];
 export const scoreBreakdowns = {
     transport: {
