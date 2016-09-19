@@ -45,7 +45,7 @@ export default class card extends React.Component {
                 let combinedCandidates = values[0].concat(values[1]);
 
                 let sortedCandidates = this.sortCandidates(combinedCandidates);
-
+                console.debug(sortedCandidates);
                 this.setState({candidates: sortedCandidates});
             })
             .catch(err => console.debug(err));
@@ -159,7 +159,7 @@ export default class card extends React.Component {
             'housing': val.c[6] ? val.c[6].v : '?',
             'cycling': val.c[7]? val.c[7].v : '?',
             'environment': val.c[8] ? val.c[8].v : '?',
-            'overall': val.c[9] && val.c[9].v ? val.c[8].v : '?',
+            'overall': val.c[9] && val.c[9].v ? val.c[9].v : '?',
         };
     }
 
