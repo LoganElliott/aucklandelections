@@ -18,7 +18,7 @@ const mayorAndCouncillorsQuery = mayorAndCouncillorsColumns.slice(1).reduce( (pr
 const mayorAndCouncillorsJsonpCallback = 'getMayorAndCouncillors';
 const mayorAndCouncillorsDataUrl = googleSpreadSheetUrl + mayorAndCouncillorsGoogleSpreadSheetKey + '&tq=' + mayorAndCouncillorsQuery + '&tqx=responseHandler:' + mayorAndCouncillorsJsonpCallback;
 
-const localBoardsColumns = ['B','C','D','E','R','S','T','U','V','W'];
+const localBoardsColumns = ['B','C','D','E','R','S','T','U','V','W','X'];
 const localBoardsGoogleSpreadSheetKey = '1u51qnVBZtF_NdCdcsFHO-i5rbpu54NagFU6TgMpmg4c';
 const localBoardsQuery = localBoardsColumns.slice(1).reduce( (pre, cur) => pre + commaSpace + cur,'SELECT%20B');
 const localBoardsJsonpCallback = 'getLocalBoards';
@@ -159,6 +159,7 @@ export default class card extends React.Component {
             'cycling': val.c[7]? val.c[7].v : '?',
             'environment': val.c[8] ? val.c[8].v : '?',
             'overall': val.c[9] && val.c[9].v ? val.c[9].v : '?',
+            'ticket': val.c[10] ? val.c[10].v : '?',
         };
     }
 

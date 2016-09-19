@@ -2,8 +2,11 @@ import React, {PropTypes} from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import CircularProgress from 'material-ui/CircularProgress';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import {wardImagesPath, wards, localBoards} from '../../conf/conf';
 
 injectTapEventPlugin();
@@ -26,11 +29,13 @@ export default class AddressSearcher extends React.Component {
             value: '',
             addressError: '',
             searching: false,
+            dropDownValue: 1
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleEnter = this.handleEnter.bind(this);
+        this.onWardSelect = this.onWardSelect.bind(this);
     }
 
     componentWillMount(){
@@ -52,7 +57,6 @@ export default class AddressSearcher extends React.Component {
     }
 
     getWardAndLocalBoardFromQuery(val){
-
         let search = val.split('?')[1].split('&');
 
         let ward = '';
@@ -151,6 +155,16 @@ export default class AddressSearcher extends React.Component {
         )
     }
 
+    onWardSelect (event, index, ward) {
+        if(ward !== 1){
+            this.props.setWardAndLocalBoard(ward, '');
+            this.setState({
+                ward: ward,
+                localBoard: ''
+            })
+        }
+    };
+
     render() {
         const textFieldStyle = {
             margin: 12
@@ -184,46 +198,69 @@ export default class AddressSearcher extends React.Component {
             color: 'rgb(93,93,93)',
         };
 
-        let textFieldInput = <div className='field-button-container'>
-            <div>
-                <TextField hintText="Enter Address"
-                           floatingLabelFixed={true}
-                           floatingLabelStyle={fieldStyle}
-                           floatingLabelText="e.g. 1 Richmond Rd Ponsonby"
-                           value={this.state.value}
-                           onChange={this.handleChange}
-                           style={textFieldStyle}
-                           errorText={this.state.addressError}
-                           onKeyDown={this.handleEnter}
-                />
+        let wardMenuItems = [];
+
+        wards.map((ward, index) =>  {
+            wardMenuItems.push(<MenuItem key={ward} value={ward} primaryText={ward}/>)
+        });
+
+        let customWidth = {
+                width: 256,
+        };
+
+        let textFieldInput = <div>
+            <div className='field-button-container'>
+                <div>
+                    <TextField hintText="Enter Address"
+                               floatingLabelFixed={true}
+                               floatingLabelStyle={fieldStyle}
+                               floatingLabelText="e.g. 1 Richmond Rd Ponsonby"
+                               value={this.state.value}
+                               onChange={this.handleChange}
+                               style={textFieldStyle}
+                               errorText={this.state.addressError}
+                               onKeyDown={this.handleEnter}
+                    />
+                </div>
+                <div>
+                    <RaisedButton label="FIND MY VOTING AREA"
+                                  onClick={this.handleClick}
+                                  style={buttonStyle}
+                                  className='find-my-voting-area-button'
+                    />
+                </div>
             </div>
-            <div>
-                <RaisedButton label="FIND MY VOTING AREA"
-                              onClick={this.handleClick}
-                              style={buttonStyle}
-                              className='find-my-voting-area-button'
-                />
+            <div className="down-down-selector">
+                <DropDownMenu value={this.state.ward || this.state.dropDownValue} onChange={this.onWardSelect} autoWidth={false} style={customWidth}>
+                    <MenuItem key={1} value={1} primaryText='Or Select a voting area' />
+                    {wardMenuItems}
+                </DropDownMenu>
             </div>
         </div>;
 
-        let loadingCircle = <div id="loading-bar">
+        let loadingCircle = <div className="loading-bar">
             { this.state.searching ? <CircularProgress mode="indeterminate"/> : null }
         </div>;
 
-        let searchResult = <div>
-            <div className="voting-area__preamble">
-                Your voting area is the
-            </div>
-            <div className="voting-area__ward">
-                {this.state.ward.toUpperCase() + ' Ward'.toUpperCase()}
-            </div>
-            <div className="voting-area__local-board">
-                {this.state.localBoard ? '& ' + this.state.localBoard.toUpperCase() + ' Local Board Area'.toUpperCase(): ''}
-            </div>
-            <div>
-                <img src={wardImagesPath + this.state.ward.replace(/\s/g,'') + '.png'}></img>
-            </div>
-        </div>;
+        let searchResult = '';
+            if(!this.state.searching && this.state.ward) {
+                searchResult = <div>
+                    <div className="voting-area__preamble">
+                        Your voting area is the
+                    </div>
+                    <div className="voting-area__ward">
+                        {this.state.ward.toUpperCase() + ' Ward'.toUpperCase()}
+                    </div>
+                    <div className="voting-area__local-board">
+                        {this.state.localBoard ? '& ' + this.state.localBoard.toUpperCase() + ' Local Board Area'.toUpperCase() : ''}
+                    </div>
+                    <div>
+                        <img src={wardImagesPath + this.state.ward.replace(/\s/g, '') + '.png'}></img>
+                    </div>
+                </div>;
+            } else {
+                searchResult = '';
+            }
 
         return(
             <div>
@@ -232,9 +269,7 @@ export default class AddressSearcher extends React.Component {
                     {infoText}
                     {textFieldInput}
                     {loadingCircle}
-                    { !this.state.searching && this.state.ward
-                        ? searchResult
-                        : null }
+                    {searchResult}
                 </div>
             </div>
         );
