@@ -52,7 +52,12 @@ export default class card extends React.Component {
 
     sortCandidates (candidates) {
         return candidates.sort((a, b) => {
-            if(b.overallValue === a.overallValue){
+            if(a.overallValue === '?') {
+                return -1
+            } else if(b.overallValue === '?'){
+                return 1;
+            }
+            else if(b.overallValue === a.overallValue){
                 return (b.firstName+b.lastName).toUpperCase() < (a.firstName+a.lastName).toUpperCase()
             } else {
                 return b.overallValue - a.overallValue;
