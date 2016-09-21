@@ -52,12 +52,7 @@ export default class card extends React.Component {
 
     sortCandidates (candidates) {
         return candidates.sort((a, b) => {
-            if(a.overallValue === '?') {
-                return -1
-            } else if(b.overallValue === '?'){
-                return 1;
-            }
-            else if(b.overallValue === a.overallValue){
+        if(b.overallValue === a.overallValue){
                 return (b.firstName+b.lastName).toUpperCase() < (a.firstName+a.lastName).toUpperCase()
             } else {
                 return b.overallValue - a.overallValue;
@@ -135,7 +130,7 @@ export default class card extends React.Component {
             'scores': scores,
             'consensus': val.c[16] ? val.c[16].v: '',
             'overallValue': val.c[17] ? val.c[17].v : '?',
-            'overall': val.c[18]  ? val.c[18].v : '?',
+            'overall': val.c[18]  ? val.c[18].v : 0,
             'transport': val.c[19]  ? val.c[19].v : '?',
             'housing': val.c[20]  ? val.c[20].v : '?',
             'environment': val.c[21]  ? val.c[21].v : '?',
@@ -158,7 +153,7 @@ export default class card extends React.Component {
             'image': image,
             'standingForLocalBoard': val.c[2] ? val.c[2].v : '',
             'subdivision': val.c[3] ? val.c[3].v : '',
-            'overallValue': val.c[4] ? val.c[4].v : '?',
+            'overallValue': val.c[4] ? val.c[4].v : 0,
             'transport': val.c[5] ? val.c[5].v : '?',
             'housing': val.c[6] ? val.c[6].v : '?',
             'cycling': val.c[7]? val.c[7].v : '?',
