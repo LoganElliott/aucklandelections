@@ -10,6 +10,7 @@ See live site here http://www.aucklandelections.nz
 
 This is a [React](https://facebook.github.io/react/) website
 Which uses [ECMAScript 2016](http://www.ecma-international.org/ecma-262/7.0/)
+
 The transpiling & SCSS compiling is handled by [Webpack](https://webpack.github.io/) which also autoprefixes css vendor prefixes 
 
 ## Candidate Score Data
@@ -24,7 +25,7 @@ It pulls the candidate data straight from a [Google Spreadsheet](https://docs.go
 
 ## Design
 
-This is a custom design care of a Generation Zeroite, but uses some [Material Design Components](http://www.material-ui.com)
+This is a custom design care of a Generation Zero, but uses some [Material Design Components](http://www.material-ui.com)
 
 It is a desktop & mobile friendly website which will dynamically reconfigure when you're screen is less than 1000px
 
